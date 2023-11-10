@@ -20,7 +20,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.m_isDead = false;
 
         if (texture === "mob1") {
-            this.setBodySize(24, 14, false);
+            this.setBodySize(20,32, false );
             this.setOffset(0, 14);
         } if (texture === "mob2") {
             this.setBodySize(24, 32);
@@ -102,10 +102,10 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         // 보스몹이면 투명도를 조절하지 않습니다.
         if (this.texture.key === "lion") return;
         // 몹의 투명도를 0.5로 변경하고,
-        // 1초 후 1로 변경합니다.
+        // 0.5초 후 1로 변경합니다.
         this.alpha = 0.5;
         this.scene.time.addEvent({
-            delay: 1000,
+            delay: 500,
             callback: () => {
                 this.alpha = 1;
             },
