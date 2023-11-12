@@ -22,7 +22,7 @@ export default class MainScene extends Phaser.Scene {
         // 움직이는 라이캣을 가운데 추가합니다.
         this.add
             .sprite(Config.width / 2, Config.height / 2, "player")
-            .setScale(4)
+            .setScale(2)
             .play("player_anim");
 
         // 게임 시작 버튼을 하단에 추가합니다.
