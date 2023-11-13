@@ -13,7 +13,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
 
         // scale 프로퍼티를 조절해 크기를 조절할 수 있습니다. (디폴트: 1)
-        this.scale = 2;
+        this.scale = 1;
 
         // depth를 조절해 어떤 오브젝트가 앞에 오고 뒤에 올지 설정할 수 있습니다.
         // CSS의 z-index와 비슷한 개념입니다. (디폴트: 0)
@@ -44,8 +44,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // flipX 프로퍼티는 boolean 값을 받아 x축 방향으로 뒤집혀있을지 아닐지를 설정합니다.
         // player가 왼쪽으로 이동할 때는 flipX = false,
         // player가 오른쪽쪽으로 이동할 때는 flipX = true로 설정해 적절한 방향을 바라보게 해 줍니다.
-        if (vector[0] === -1) this.flipX = false;
-        else if (vector[0] === 1) this.flipX = true;
+        if (vector[0] === -1) this.flipX = true;
+        else if (vector[0] === 1) this.flipX = false;
     }
 
     // 몹과 접촉했을 경우 실행되는 함수입니다.

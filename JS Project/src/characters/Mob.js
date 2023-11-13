@@ -20,8 +20,9 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.m_isDead = false;
 
         if (texture === "mob1") {
-            this.setBodySize(24, 14, false);
-            this.setOffset(0, 14);
+            this.setBodySize(20,64);
+            this.setOffset(0, 0);
+            this.scale = 1;
         } if (texture === "mob2") {
             this.setBodySize(24, 32);
         } if (texture === "mob3") {
@@ -60,8 +61,8 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
     update() {
         if (!this.body) return;
 
-        if (this.x < this.scene.m_player.x) this.flipX = true;
-        else this.flipX = false;
+        if (this.x < this.scene.m_player.x) this.flipX = false;
+        else this.flipX = true;
 
         // HP가 0 이하이고, 죽은 적이 없으면 죽습니다. (1번만 죽을 수 있습니다.)
         if (this.m_hp <= 0 && !this.m_isDead) {
@@ -102,10 +103,10 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         // 보스몹이면 투명도를 조절하지 않습니다.
         if (this.texture.key === "lion") return;
         // 몹의 투명도를 0.5로 변경하고,
-        // 1초 후 1로 변경합니다.
+        // 0.5초 후 1로 변경합니다.
         this.alpha = 0.5;
         this.scene.time.addEvent({
-            delay: 1000,
+            delay: 500,
             callback: () => {
                 this.alpha = 1;
             },
