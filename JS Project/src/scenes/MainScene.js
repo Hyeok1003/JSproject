@@ -8,11 +8,15 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        // 배경색을 채워줍니다.
-        this.add.graphics()
-            .fillStyle(0xbbdefb)
-            .fillRect(0, 0, Config.width, Config.height)
-            .setScrollFactor(0);
+        // // 배경색을 채워줍니다.
+        // this.add.graphics()
+        //     .fillStyle(0xbbdefb)
+        //     .fillRect(0, 0, Config.width, Config.height)
+        //     .setScrollFactor(0);
+        // 배경 이미지 로드
+        const main_img = this.add.image(0, 0, "mainback").setScale(0.77);
+        main_img.setOrigin(0.5, 0.5);
+
 
         // 게임 제목을 상단에 추가합니다.
         this.add
@@ -30,9 +34,10 @@ export default class MainScene extends Phaser.Scene {
         new Button(
             Config.width / 2,
             Config.height / 2 + 150,
-            "Start Game",
+            "start",
             this,
-            () => this.scene.start("playGame")
+            () => this.scene.start("playGame"),
+            0.4
         );
     }
 }
