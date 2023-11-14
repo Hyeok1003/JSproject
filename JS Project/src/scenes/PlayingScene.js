@@ -43,6 +43,10 @@ export default class PlayingScene extends Phaser.Scene {
         setBackground(this, "background1");
 
         this.m_cursorKeys = this.input.keyboard.createCursorKeys();
+        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         // Mob
         this.m_mobs = this.physics.add.group();
@@ -197,7 +201,8 @@ export default class PlayingScene extends Phaser.Scene {
 
 
     movePlayerManager() {
-        if (this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+        if (this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown || 
+            this.keyA.isDown || this.keyD.isDown || this.keyW.isDown || this.keyS.isDown) {
             if (!this.m_player.m_moving) {
                 this.m_player.play("player_anim");
             }
@@ -214,16 +219,32 @@ export default class PlayingScene extends Phaser.Scene {
         // 왼쪽 키가 눌려있을 때는 vector[0] += -1, 오른쪽 키가 눌려있을 때는 vector[0] += 1을 해줍니다.
         // 위/아래 또한 같은 방법으로 벡터를 수정해줍니다.
         let vector = [0, 0];
-        if (this.m_cursorKeys.left.isDown) {
+
+        // 방향키로 움직이는 것
+        // if (this.m_cursorKeys.left.isDown) {
+        //     // player.x -= PLAYER_SPEED // 공개영상에서 진행했던 것
+        //     vector[0] += -1;
+        // } else if (this.m_cursorKeys.right.isDown) {
+        //     vector[0] += 1;
+        // }
+
+        // if (this.m_cursorKeys.up.isDown) {
+        //     vector[1] += -1;
+        // } else if (this.m_cursorKeys.down.isDown) {
+        //     vector[1] += 1;
+        // }
+
+        //wasd 키 버전
+        if (this.keyA.isDown) {
             // player.x -= PLAYER_SPEED // 공개영상에서 진행했던 것
             vector[0] += -1;
-        } else if (this.m_cursorKeys.right.isDown) {
+        } else if (this.keyD.isDown) {
             vector[0] += 1;
         }
 
-        if (this.m_cursorKeys.up.isDown) {
+        if (this.keyW.isDown) {
             vector[1] += -1;
-        } else if (this.m_cursorKeys.down.isDown) {
+        } else if (this.keyS.isDown) {
             vector[1] += 1;
         }
 
