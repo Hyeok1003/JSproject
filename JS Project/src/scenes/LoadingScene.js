@@ -71,12 +71,12 @@ export default class LoadingScene extends Phaser.Scene {
             frameHeight: 72,
         });
         this.load.spritesheet("mob3", mobImg3, {
-            frameWidth: 32,
-            frameHeight: 32,
+            frameWidth: 515/7,
+            frameHeight: 88,
         });
         this.load.spritesheet("mob4", mobImg4, {
-            frameWidth: 32,
-            frameHeight: 32,
+            frameWidth: 237/4,
+            frameHeight: 68,
         });
         this.load.spritesheet("boss1", bossImg1, {
             frameWidth: 255,
@@ -141,13 +141,13 @@ export default class LoadingScene extends Phaser.Scene {
         this.anims.create({
             key: "mob3_anim",
             frames: this.anims.generateFrameNumbers("mob3"),
-            frameRate: 12,
+            frameRate: 7,
             repeat: -1,
         });
         this.anims.create({
             key: "mob4_anim",
             frames: this.anims.generateFrameNumbers("mob4"),
-            frameRate: 12,
+            frameRate: 4,
             repeat: -1,
         });
         this.anims.create({

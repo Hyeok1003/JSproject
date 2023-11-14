@@ -12,7 +12,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
 
         this.play(animKey);
         this.setDepth(10);
-        this.scale = 2;
+        this.scale = 1;
 
         this.m_speed = 50;
         this.m_hp = initHp;
@@ -30,9 +30,11 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         } 
         else if (texture === "mob3") {
             this.setBodySize(24, 32);
+            this.scale = 1
         } 
         else if (texture === "mob4") {
             this.setBodySize(24, 32);
+            this.scale = 1
         } 
         else if (texture === "boss1") {
             this.scale = 1;
