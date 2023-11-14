@@ -32,6 +32,12 @@ import gameClearOgg from "../assets/sounds/gameClear.ogg";
 import pauseInOgg from "../assets/sounds/pauseIn.ogg";
 import pauseOutOgg from "../assets/sounds/pauseOut.ogg";
 
+//메인화면 이미지 로드
+import mainbg from "../assets/images/mainbg2-1.png";
+
+//버튼 이미지 로드
+import startImg from "../assets/images/gamestart.png";
+
 export default class LoadingScene extends Phaser.Scene {
     constructor() {
         // super에 파라미터로 넘겨주는 string이 해당 scene의 identifier가 됩니다.
@@ -39,6 +45,12 @@ export default class LoadingScene extends Phaser.Scene {
     }
 
     preload() {
+        // MainBg
+        this.load.image("mainback", mainbg);
+
+        // start Button
+        this.load.image("start", startImg);
+
         // IMAGES
         this.load.image("background1", bgImg1);
         this.load.image("background2", bgImg2);
