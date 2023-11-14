@@ -7,6 +7,10 @@ import bgImg2 from "../assets/images/background-2.png";
 import bgImg3 from "../assets/images/background-3.png";
 import beamImg from "../assets/images/beam.png";
 
+//메인화면 이미지 로드
+import mainbg from "../assets/images/mainbg2-1.png";
+
+//버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
 
 import explosionImg from "../assets/spritesheets/explosion.png";
@@ -41,6 +45,9 @@ export default class LoadingScene extends Phaser.Scene {
     }
 
     preload() {
+        // main back image
+        this.load.image("mainback", mainbg);
+
         // IMAGES
         this.load.image("background1", bgImg1);
         this.load.image("background2", bgImg2);
