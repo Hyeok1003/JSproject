@@ -7,6 +7,8 @@ import bgImg2 from "../assets/images/background-2.png";
 import bgImg3 from "../assets/images/background-3.png";
 import beamImg from "../assets/images/beam.png";
 
+import startImg from "../assets/images/gamestart.png";
+
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
@@ -44,6 +46,9 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.image("background2", bgImg2);
         this.load.image("background3", bgImg3);
         this.load.image("beam", beamImg);
+
+        //start button
+        this.load.image("start", startImg);
 
         // SPRITESHEETS
         this.load.spritesheet("player", playerImg, {

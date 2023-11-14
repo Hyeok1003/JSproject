@@ -30,9 +30,10 @@ export default class MainScene extends Phaser.Scene {
         new Button(
             Config.width / 2,
             Config.height / 2 + 150,
-            "Start Game",
+            "start",
             this,
-            () => this.scene.start("playGame")
+            () => this.scene.start("playGame"),
+            0.4
         );
     }
 }
