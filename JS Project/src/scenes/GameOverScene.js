@@ -17,16 +17,14 @@ export default class GameOverScene extends Phaser.Scene {
     }
 
     create() {
-        const bg = this.add.graphics();
-        bg.fillStyle(0x5c6bc0);
-        bg.fillRect(0, 0, Config.width, Config.height);
-        bg.setScrollFactor(0);
+        const GameOver_img = this.add.image(0, 0, "GameSet").setScale(0.295);
+        GameOver_img.setOrigin(0, 0);
 
         this.add.bitmapText(
             Config.width / 2,
             Config.height / 2 - 180,
             "pixelFont",
-            "Game Over",
+            "You Lose...",
             80
         ).setOrigin(0.5);
 
@@ -56,9 +54,10 @@ export default class GameOverScene extends Phaser.Scene {
         new Button(
             Config.width / 2,
             Config.height / 2 + 180,
-            "Go to Main",
+            "gameover",
             this,
-            () => this.scene.start("mainScene")
+            () => this.scene.start("mainScene"),
+            0.77
         );
     }
 }
