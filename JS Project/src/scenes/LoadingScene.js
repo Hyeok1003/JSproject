@@ -10,8 +10,13 @@ import beamImg from "../assets/images/beam.png";
 //메인화면 이미지 로드
 import mainbg from "../assets/images/mainbg2-1.png";
 
+//게임클리어 및 종료 배경 로드
+import ClearBg from "../assets/images/ClaerBg.png";
+import GameOverBg from "../assets/images/GameOverBg.png";
+
 //버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
+import gameoverImg from "../assets/images/gameover.png";
 
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
@@ -45,8 +50,12 @@ export default class LoadingScene extends Phaser.Scene {
     }
 
     preload() {
-        // main back image
+        // main background image
         this.load.image("mainback", mainbg);
+
+        //BackGround Images
+        this.load.image("GameClaerBack", ClearBg);
+        this.load.image("GameSet", GameOverBg);
 
         // IMAGES
         this.load.image("background1", bgImg1);
@@ -56,6 +65,7 @@ export default class LoadingScene extends Phaser.Scene {
 
         //start button
         this.load.image("start", startImg);
+        this.load.image("gameover", gameoverImg);
 
         // SPRITESHEETS
         this.load.spritesheet("player", playerImg, {

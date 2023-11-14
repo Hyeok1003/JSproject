@@ -8,15 +8,13 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        // // 배경색을 채워줍니다.
-        // this.add.graphics()
-        //     .fillStyle(0xbbdefb)
-        //     .fillRect(0, 0, Config.width, Config.height)
-        //     .setScrollFactor(0);
+        //게임오버 화면 디버그 테스트용 코드
+        // const Gameclear_img = this.add.image(0, 0, "GameSet").setScale(0.3);
+        // Gameclear_img.setOrigin(0, 0);
+
         // 배경 이미지 로드
         const main_img = this.add.image(0, 0, "mainback").setScale(0.77);
         main_img.setOrigin(0.5, 0.5);
-
 
         // 게임 제목을 상단에 추가합니다.
         this.add
@@ -33,7 +31,7 @@ export default class MainScene extends Phaser.Scene {
         // 버튼을 누르면 PlayingScene으로 이동하도록 callback을 전달해줍니다.
         new Button(
             Config.width / 2,
-            Config.height / 2 + 150,
+            Config.height / 2 + 200,
             "start",
             this,
             () => this.scene.start("playGame"),
