@@ -20,7 +20,7 @@ export default class MainScene extends Phaser.Scene {
 
         // 게임 제목을 상단에 추가합니다.
         this.add
-            .bitmapText(Config.width / 2, 150, "pixelFont", "Save the Weniv World!", 60)
+            .bitmapText(Config.width / 2, 150, "pixelFont", "Gohst Survivor", 60)
             .setOrigin(0.5);
 
         // 움직이는 라이캣을 가운데 추가합니다.

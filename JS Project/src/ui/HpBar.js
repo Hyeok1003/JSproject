@@ -8,7 +8,7 @@ export default class HpBar extends Phaser.GameObjects.Graphics {
         super(scene);
 
         // HP Bar의 width, height, border를 설정해줍니다.
-        this.WIDTH = 80;
+        this.WIDTH = 60;
         this.HEIGHT = 12;
         this.BORDER = 2;
 

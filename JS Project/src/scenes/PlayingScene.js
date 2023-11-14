@@ -6,7 +6,7 @@ import TopBar from "../ui/TopBar";
 import ExpBar from "../ui/ExpBar";
 import { setBackground } from "../utils/backgroundManager";
 import { addMob, addMobEvent, removeOldestMobEvent } from "../utils/mobManager"
-import { setAttackScale, setAttackDamage, addAttackEvent } from "../utils/attackManager"
+import { setAttackScale, setAttackDamage, addAttackEvent, removeAttack } from "../utils/attackManager"
 import { pause } from "../utils/pauseManager";
 import { createTime } from "../utils/time";
 
@@ -43,10 +43,11 @@ export default class PlayingScene extends Phaser.Scene {
         setBackground(this, "background1");
 
         this.m_cursorKeys = this.input.keyboard.createCursorKeys();
-        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        // 방향키 중복코드
+        // this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        // this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        // this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        // this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         // Mob
         this.m_mobs = this.physics.add.group();
@@ -193,7 +194,7 @@ export default class PlayingScene extends Phaser.Scene {
                 setAttackDamage(this, "beam", 40);
                 break;
             case 7:
-                addMob(this, "lion", "lion_anim", 200, 0);
+                addMob(this, "boss1", "boss1_anim", 200, 0);
                 setBackground(this, "background3");
                 break;
         }
@@ -201,18 +202,25 @@ export default class PlayingScene extends Phaser.Scene {
 
 
     movePlayerManager() {
-        if (this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown || 
-            this.keyA.isDown || this.keyD.isDown || this.keyW.isDown || this.keyS.isDown) {
+        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
+        if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+            || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
             if (!this.m_player.m_moving) {
                 this.m_player.play("player_anim");
             }
             this.m_player.m_moving = true;
-        } else {
+        } 
+        else {
             if (this.m_player.m_moving) {
                 this.m_player.play("player_idle");
             }
             this.m_player.m_moving = false;
         }
+    
 
         // vector를 사용해 움직임을 관리할 것입니다.
         // vector = [x좌표 방향, y좌표 방향]입니다.
@@ -234,17 +242,16 @@ export default class PlayingScene extends Phaser.Scene {
         //     vector[1] += 1;
         // }
 
-        //wasd 키 버전
-        if (this.keyA.isDown) {
+        if (this.m_cursorKeys.left.isDown || this.keyA.isDown) {
             // player.x -= PLAYER_SPEED // 공개영상에서 진행했던 것
             vector[0] += -1;
-        } else if (this.keyD.isDown) {
+        } else if (this.m_cursorKeys.right.isDown || this.keyD.isDown) {
             vector[0] += 1;
         }
 
-        if (this.keyW.isDown) {
+        if (this.m_cursorKeys.up.isDown || this.keyW.isDown) {
             vector[1] += -1;
-        } else if (this.keyS.isDown) {
+        } else if (this.m_cursorKeys.down.isDown || this.keyS.isDown) {
             vector[1] += 1;
         }
 
@@ -255,5 +262,4 @@ export default class PlayingScene extends Phaser.Scene {
             weapon.move(vector);
         }, this);
     }
-
 }
