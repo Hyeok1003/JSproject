@@ -14,7 +14,7 @@ import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
 import mobImg3 from "../assets/spritesheets/mob3.png";
 import mobImg4 from "../assets/spritesheets/mob4.png";
-import lionImg from "../assets/spritesheets/lion.png";
+import bossImg1 from "../assets/spritesheets/boss1.png";
 import catnipImg from "../assets/spritesheets/catnip.png";
 import clawWhiteImg from "../assets/spritesheets/claw-white.png";
 import clawYellowImg from "../assets/spritesheets/claw-yellow.png";
@@ -51,12 +51,12 @@ export default class LoadingScene extends Phaser.Scene {
             frameHeight: 86,
         });
         this.load.spritesheet("mob1", mobImg1, {
-            frameWidth: 402/8,
-            frameHeight: 72,
+            frameWidth: 177 / 4,
+            frameHeight: 46,
         });
         this.load.spritesheet("mob2", mobImg2, {
-            frameWidth: 32,
-            frameHeight: 32,
+            frameWidth: 402/8,
+            frameHeight: 72,
         });
         this.load.spritesheet("mob3", mobImg3, {
             frameWidth: 32,
@@ -66,9 +66,9 @@ export default class LoadingScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32,
         });
-        this.load.spritesheet("lion", lionImg, {
-            frameWidth: 48,
-            frameHeight: 64,
+        this.load.spritesheet("boss1", bossImg1, {
+            frameWidth: 255,
+            frameHeight: 174,
         });
         this.load.spritesheet("explosion", explosionImg, {
             frameWidth: 32,
@@ -117,13 +117,13 @@ export default class LoadingScene extends Phaser.Scene {
         this.anims.create({
             key: "mob1_anim",
             frames: this.anims.generateFrameNumbers("mob1"),
-            frameRate: 8,
+            frameRate: 4,
             repeat: -1,
         });
         this.anims.create({
             key: "mob2_anim",
             frames: this.anims.generateFrameNumbers("mob2"),
-            frameRate: 12,
+            frameRate: 8,
             repeat: -1,
         });
         this.anims.create({
@@ -139,14 +139,14 @@ export default class LoadingScene extends Phaser.Scene {
             repeat: -1,
         });
         this.anims.create({
-            key: "lion_anim",
-            frames: this.anims.generateFrameNumbers("lion"),
-            frameRate: 12,
+            key: "boss1_anim",
+            frames: this.anims.generateFrameNumbers("boss1"),
+            frameRate: 4,
             repeat: -1,
         });
         this.anims.create({
-            key: "lion_idle",
-            frames: this.anims.generateFrameNumbers("lion", {
+            key: "boss1_idle",
+            frames: this.anims.generateFrameNumbers("boss1", {
                 start: 0,
                 end: 0,
             }),

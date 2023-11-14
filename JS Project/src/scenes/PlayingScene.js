@@ -6,7 +6,7 @@ import TopBar from "../ui/TopBar";
 import ExpBar from "../ui/ExpBar";
 import { setBackground } from "../utils/backgroundManager";
 import { addMob, addMobEvent, removeOldestMobEvent } from "../utils/mobManager"
-import { setAttackScale, setAttackDamage, addAttackEvent } from "../utils/attackManager"
+import { setAttackScale, setAttackDamage, addAttackEvent, removeAttack } from "../utils/attackManager"
 import { pause } from "../utils/pauseManager";
 import { createTime } from "../utils/time";
 
@@ -189,7 +189,7 @@ export default class PlayingScene extends Phaser.Scene {
                 setAttackDamage(this, "beam", 40);
                 break;
             case 7:
-                addMob(this, "lion", "lion_anim", 200, 0);
+                addMob(this, "boss1", "boss1_anim", 200, 0);
                 setBackground(this, "background3");
                 break;
         }
@@ -197,7 +197,12 @@ export default class PlayingScene extends Phaser.Scene {
 
 
     movePlayerManager() {
-        if (this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
+        if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
             if (!this.m_player.m_moving) {
                 this.m_player.play("player_anim");
             }
@@ -214,16 +219,16 @@ export default class PlayingScene extends Phaser.Scene {
         // 왼쪽 키가 눌려있을 때는 vector[0] += -1, 오른쪽 키가 눌려있을 때는 vector[0] += 1을 해줍니다.
         // 위/아래 또한 같은 방법으로 벡터를 수정해줍니다.
         let vector = [0, 0];
-        if (this.m_cursorKeys.left.isDown) {
+        if (this.m_cursorKeys.left.isDown || this.keyA.isDown) {
             // player.x -= PLAYER_SPEED // 공개영상에서 진행했던 것
             vector[0] += -1;
-        } else if (this.m_cursorKeys.right.isDown) {
+        } else if (this.m_cursorKeys.right.isDown || this.keyD.isDown) {
             vector[0] += 1;
         }
 
-        if (this.m_cursorKeys.up.isDown) {
+        if (this.m_cursorKeys.up.isDown || this.keyW.isDown) {
             vector[1] += -1;
-        } else if (this.m_cursorKeys.down.isDown) {
+        } else if (this.m_cursorKeys.down.isDown || this.keyS.isDown) {
             vector[1] += 1;
         }
 

@@ -20,18 +20,24 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.m_isDead = false;
 
         if (texture === "mob1") {
-            this.setBodySize(20,64);
+            this.setBodySize(32,46);
             this.setOffset(0, 0);
             this.scale = 1;
-        } if (texture === "mob2") {
+        } 
+        else if (texture === "mob2") {
+            this.setBodySize(44, 72);
+            this.scale = 1;
+        } 
+        else if (texture === "mob3") {
             this.setBodySize(24, 32);
-        } if (texture === "mob3") {
+        } 
+        else if (texture === "mob4") {
             this.setBodySize(24, 32);
-        } if (texture === "mob4") {
-            this.setBodySize(24, 32);
-        } if (texture === "lion") {
+        } 
+        else if (texture === "boss1") {
+            this.scale = 1;
             this.m_speed = 60;
-            this.setBodySize(40, 64);
+            this.setBodySize(72, 80);
         }
 
         this.m_events = [];
@@ -101,12 +107,12 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
     // 공격받은 mob을 투명도를 1초간 조절함으로써 공격받은 것을 표시합니다.
     displayHit() {
         // 보스몹이면 투명도를 조절하지 않습니다.
-        if (this.texture.key === "lion") return;
+        if (this.texture.key === "boss1") return;
         // 몹의 투명도를 0.5로 변경하고,
         // 0.5초 후 1로 변경합니다.
         this.alpha = 0.5;
         this.scene.time.addEvent({
-            delay: 500,
+            delay: 1000,
             callback: () => {
                 this.alpha = 1;
             },
@@ -144,7 +150,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.scene.time.removeEvent(this.m_events);
 
         // 보스몹이 죽었을 때
-        if (this.texture.key === "lion") {
+        if (this.texture.key === "boss1") {
             // 공격을 제거합니다. (attackManager.js 참고)
             removeAttack(this.scene, "catnip");
             removeAttack(this.scene, "beam");
@@ -152,7 +158,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
             // 플레이어가 보스몹과 접촉해도 HP가 깎이지 않도록 만듭니다.
             this.disableBody(true, false);
             // 보스몹이 움직이던 애니메이션을 멉춥니다.
-            this.play("lion_idle");
+            this.play("boss1_idle");
             // 모든 몹의 움직임을 멈춥니다.
             this.scene.m_mobs.children.each((mob) => {
                 mob.m_speed = 0;
