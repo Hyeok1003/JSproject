@@ -18,7 +18,7 @@ export default class BackgroundManager {
         bg.setVisible(false);
         this.backgrounds.push(bg);
 
-        const music = this.scene.sound.add(bgmKey);
+        const music = this.scene.sound.add(bgmKey, { loop: true }); // loop 옵션을 true로 설정하여 무한반복
         music.play();
         music.pause();
         this.bgm.push(music);

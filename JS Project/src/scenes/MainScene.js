@@ -12,7 +12,7 @@ export default class MainScene extends Phaser.Scene {
         //게임오버 화면 디버그 테스트용 코드
         // const Gameclear_img = this.add.image(0, 0, "GameSet").setScale(0.3);
         // Gameclear_img.setOrigin(0, 0);
-        
+
         //초기 메인 브금을 로드.
         const mainBGM1 = this.sound.add("MainBGM1");
         mainBGM1.play();
@@ -31,7 +31,7 @@ export default class MainScene extends Phaser.Scene {
         
         // 게임 제목을 상단에 추가합니다.
         this.add
-            .bitmapText(Config.width / 2, 150, "pixelFont", "Gohst Survivor", 60)
+            .bitmapText(Config.width / 2, 150, "pixelFont", "Ghost Survivor", 60)
             .setOrigin(0.5);
 
         // 움직이는 플레이어를 가운데 추가합니다.

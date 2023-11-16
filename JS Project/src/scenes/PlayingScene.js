@@ -32,6 +32,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.m_gameClearSound = this.sound.add("audio_gameClear");
         this.m_pauseInSound = this.sound.add("audio_pauseIn");
         this.m_pauseOutSound = this.sound.add("audio_pauseOut");
+        this.GameOverBGM = this.sound.add("GameOverBGM");
 
 
         // player를 m_player라는 멤버 변수로 추가합니다.

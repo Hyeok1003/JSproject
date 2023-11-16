@@ -18,6 +18,7 @@ import GameOverBg from "../assets/images/GameOverBg.png";
 //사운드 파일 로드
 import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
 import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
+import GameOverBGM from "../assets/sounds/BGM/BGM_dark.mp3";
 
 //버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
@@ -140,6 +141,7 @@ export default class LoadingScene extends Phaser.Scene {
         //귀혼 메인BGM로드
         this.load.audio("MainBGM1", MainBGM1);
         this.load.audio("MainBGM2", MainBGM2);
+        this.load.audio("GameOverBGM", GameOverBGM);
 
         // FONT
         this.load.bitmapFont("pixelFont", fontPng, fontXml);
