@@ -13,10 +13,18 @@ export default class MainScene extends Phaser.Scene {
         mainBGM1.on(Phaser.Sound.Events.COMPLETE, () => {
             mainBGM1.play();
         });
+        //2번째 메인브금은 처음부터 재생되지 않게 pause를 걸어둠.
+        const mainBGM2 = this.sound.add("MainBGM2");
+        mainBGM2.play();
+        mainBGM2.pause();
 
         // 배경 이미지 로드
         const main_img = this.add.image(0, 0, "mainback").setScale(0.77);
         main_img.setOrigin(0.5, 0.5);
+        // 2번째 메인배경 설정하지 않으면 안 보이도록 설정.
+        const mainbg2 = this.add.image(0, 0, "mainback2").setScale(0.5);
+        mainbg2.setOrigin(0.09, 0);
+        mainbg2.setVisible(false); //배경 처음부터 안 보이도록 설정
 
         // 배경색을 채워줍니다.
         // this.add.graphics()
@@ -50,5 +58,31 @@ export default class MainScene extends Phaser.Scene {
             () => this.scene.start("playGame"),
             0.4
         );
+
+        // 임시버튼 생성
+        const button = this.add.text(400, 300, 'Change Scene', { fill: '#0f0' });
+        button.setInteractive();
+
+        // 버튼을 클릭할 때마다 배경화면과 배경음악을 변경
+        button.on('pointerdown', () => {
+            if (main_img.visible) {
+                main_img.setVisible(false);
+                mainbg2.setVisible(true);
+                mainBGM1.pause();
+                mainBGM2.resume();
+                mainBGM2.on(Phaser.Sound.Events.COMPLETE, () => {
+                    mainBGM2.play();
+                });
+            } 
+            else {
+                main_img.setVisible(true);
+                mainbg2.setVisible(false);
+                mainBGM1.resume();
+                mainBGM2.pause();
+                mainBGM1.on(Phaser.Sound.Events.COMPLETE, () => {
+                    mainBGM1.play();
+                });
+            }
+        });
     }
 }

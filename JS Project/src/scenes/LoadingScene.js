@@ -9,6 +9,7 @@ import beamImg from "../assets/images/beam.png";
 
 //메인화면 이미지 로드
 import mainbg from "../assets/images/mainbg2-1.png";
+import mainbg2 from "../assets/images/mainbg2-2.png";
 
 //게임클리어 및 종료 배경 로드
 import ClearBg from "../assets/images/ClaerBg.png";
@@ -16,6 +17,7 @@ import GameOverBg from "../assets/images/GameOverBg.png";
 
 //사운드 파일 로드
 import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
+import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
 
 //버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
@@ -55,6 +57,7 @@ export default class LoadingScene extends Phaser.Scene {
     preload() {
         //main background image
         this.load.image("mainback", mainbg);
+        this.load.image("mainback2", mainbg2)
 
         //button
         this.load.image("start", startImg);
@@ -132,6 +135,7 @@ export default class LoadingScene extends Phaser.Scene {
 
         //귀혼 메인BGM로드
         this.load.audio("MainBGM1", MainBGM1);
+        this.load.audio("MainBGM2", MainBGM2);
 
         // FONT
         this.load.bitmapFont("pixelFont", fontPng, fontXml);
