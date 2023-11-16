@@ -68,8 +68,8 @@ export default class MainScene extends Phaser.Scene {
             if (main_img.visible) {
                 main_img.setVisible(false);
                 mainbg2.setVisible(true);
-                mainBGM1.pause();
-                mainBGM2.resume();
+                mainBGM2.play();
+                mainBGM1.stop();
                 mainBGM2.on(Phaser.Sound.Events.COMPLETE, () => {
                     mainBGM2.play();
                 });
@@ -77,8 +77,8 @@ export default class MainScene extends Phaser.Scene {
             else {
                 main_img.setVisible(true);
                 mainbg2.setVisible(false);
-                mainBGM1.resume();
-                mainBGM2.pause();
+                mainBGM1.play();
+                mainBGM2.stop();
                 mainBGM1.on(Phaser.Sound.Events.COMPLETE, () => {
                     mainBGM1.play();
                 });
