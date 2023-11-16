@@ -7,6 +7,20 @@ import bgImg2 from "../assets/images/background-2.png";
 import bgImg3 from "../assets/images/background-3.png";
 import beamImg from "../assets/images/beam.png";
 
+//메인화면 이미지 로드
+import mainbg from "../assets/images/mainbg2-1.png";
+
+//게임클리어 및 종료 배경 로드
+import ClearBg from "../assets/images/ClaerBg.png";
+import GameOverBg from "../assets/images/GameOverBg.png";
+
+//사운드 파일 로드
+import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
+
+//버튼 이미지 로드
+import startImg from "../assets/images/gamestart.png";
+import gameoverImg from "../assets/images/gameover.png";
+
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
@@ -32,12 +46,6 @@ import gameClearOgg from "../assets/sounds/gameClear.ogg";
 import pauseInOgg from "../assets/sounds/pauseIn.ogg";
 import pauseOutOgg from "../assets/sounds/pauseOut.ogg";
 
-//메인화면 이미지 로드
-import mainbg from "../assets/images/mainbg2-1.png";
-
-//버튼 이미지 로드
-import startImg from "../assets/images/gamestart.png";
-
 export default class LoadingScene extends Phaser.Scene {
     constructor() {
         // super에 파라미터로 넘겨주는 string이 해당 scene의 identifier가 됩니다.
@@ -45,11 +53,16 @@ export default class LoadingScene extends Phaser.Scene {
     }
 
     preload() {
-        // MainBg
+        //main background image
         this.load.image("mainback", mainbg);
 
-        // start Button
+        //button
         this.load.image("start", startImg);
+        this.load.image("gameover", gameoverImg);
+
+        //BackGround Images
+        this.load.image("GameClaerBack", ClearBg);
+        this.load.image("GameSet", GameOverBg);
 
         // IMAGES
         this.load.image("background1", bgImg1);
@@ -116,6 +129,9 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.audio("audio_gameClear", gameClearOgg);
         this.load.audio("audio_pauseIn", pauseInOgg);
         this.load.audio("audio_pauseOut", pauseOutOgg);
+
+        //귀혼 메인BGM로드
+        this.load.audio("MainBGM1", MainBGM1);
 
         // FONT
         this.load.bitmapFont("pixelFont", fontPng, fontXml);

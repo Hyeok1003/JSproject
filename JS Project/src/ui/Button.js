@@ -1,3 +1,4 @@
+// 텍스트 기반 버튼
 import Phaser from "phaser";
 
 // export default class Button extends Phaser.GameObjects.Text {
