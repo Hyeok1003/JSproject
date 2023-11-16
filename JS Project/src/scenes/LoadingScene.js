@@ -22,6 +22,7 @@ import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
 //버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
 import gameoverImg from "../assets/images/gameover.png";
+import rightArrow from "../assets/images/BgOptionR.png"
 
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
@@ -62,6 +63,7 @@ export default class LoadingScene extends Phaser.Scene {
         //button
         this.load.image("start", startImg);
         this.load.image("gameover", gameoverImg);
+        this.load.image("rightArrow", rightArrow);
 
         //BackGround Images
         this.load.image("GameClaerBack", ClearBg);
