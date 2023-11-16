@@ -1,6 +1,6 @@
-// 텍스트 기반 버튼
 import Phaser from "phaser";
 
+// 텍스트 기반 버튼
 // export default class Button extends Phaser.GameObjects.Text {
 //     constructor(x, y, label, scene, callback) {
 //         super(scene, x, y, label);
@@ -24,9 +24,6 @@ import Phaser from "phaser";
 //         scene.add.existing(this);
 //     }
 // }
-
-//이미지 기반 버튼
-
 export default class ImageButton extends Phaser.GameObjects.Image {
     constructor(x, y, key, scene, callback, scale = 1) {
         super(scene, x, y, key);

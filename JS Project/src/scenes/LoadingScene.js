@@ -9,9 +9,21 @@ import beamImg from "../assets/images/beam.png";
 
 //메인화면 이미지 로드
 import mainbg from "../assets/images/mainbg2-1.png";
+import mainbg2 from "../assets/images/mainbg2-2.png";
+
+//게임클리어 및 종료 배경 로드
+import ClearBg from "../assets/images/ClaerBg.png";
+import GameOverBg from "../assets/images/GameOverBg.png";
+
+//사운드 파일 로드
+import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
+import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
 
 //버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
+import gameoverImg from "../assets/images/gameover.png";
+import rightArrow from "../assets/images/BgOptionR.png"
+import leftArrow from "../assets/images/BgOptionL.png"
 
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
@@ -45,17 +57,25 @@ export default class LoadingScene extends Phaser.Scene {
     }
 
     preload() {
-        // main back image
+        //main background image
         this.load.image("mainback", mainbg);
+        this.load.image("mainback2", mainbg2)
+
+        //button
+        this.load.image("start", startImg);
+        this.load.image("gameover", gameoverImg);
+        this.load.image("rightArrow", rightArrow);
+        this.load.image("leftArrow", leftArrow);
+
+        //BackGround Images
+        this.load.image("GameClaerBack", ClearBg);
+        this.load.image("GameSet", GameOverBg);
 
         // IMAGES
         this.load.image("background1", bgImg1);
         this.load.image("background2", bgImg2);
         this.load.image("background3", bgImg3);
         this.load.image("beam", beamImg);
-
-        //start button
-        this.load.image("start", startImg);
 
         // SPRITESHEETS
         this.load.spritesheet("player", playerImg, {
@@ -116,6 +136,10 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.audio("audio_gameClear", gameClearOgg);
         this.load.audio("audio_pauseIn", pauseInOgg);
         this.load.audio("audio_pauseOut", pauseOutOgg);
+
+        //귀혼 메인BGM로드
+        this.load.audio("MainBGM1", MainBGM1);
+        this.load.audio("MainBGM2", MainBGM2);
 
         // FONT
         this.load.bitmapFont("pixelFont", fontPng, fontXml);
