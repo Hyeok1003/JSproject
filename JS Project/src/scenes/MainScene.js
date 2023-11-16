@@ -8,6 +8,13 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        //메인 BGM 로드
+        const mainBGM1 = this.sound.add("MainBGM1");
+        mainBGM1.play();
+        mainBGM1.on(Phaser.Sound.Events.COMPLETE, () => {
+            mainBGM1.play();
+        });
+
         //게임오버 화면 디버그 테스트용 코드
         // const Gameclear_img = this.add.image(0, 0, "GameSet").setScale(0.3);
         // Gameclear_img.setOrigin(0, 0);
