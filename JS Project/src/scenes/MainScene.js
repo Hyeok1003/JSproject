@@ -12,7 +12,7 @@ export default class MainScene extends Phaser.Scene {
         //게임오버 화면 디버그 테스트용 코드
         // const Gameclear_img = this.add.image(0, 0, "GameSet").setScale(0.3);
         // Gameclear_img.setOrigin(0, 0);
-
+        
         //초기 메인 브금을 로드.
         const mainBGM1 = this.sound.add("MainBGM1");
         mainBGM1.play();
@@ -47,7 +47,11 @@ export default class MainScene extends Phaser.Scene {
             Config.height / 2 + 200,
             "start",
             this,
-            () => this.scene.start("playGame"),
+            () => {
+                mainBGM1.stop();
+                this.bgManager.removeAll();
+                this.scene.start("playGame")
+            },
             0.4
         );
 
@@ -57,6 +61,7 @@ export default class MainScene extends Phaser.Scene {
             "rightArrow",
             this,
             () => {
+                mainBGM1.stop();
                 this.bgManager.next();
             },
             0.5
@@ -72,6 +77,7 @@ export default class MainScene extends Phaser.Scene {
             "leftArrow",
             this,
             () => {
+                mainBGM1.stop();
                 this.bgManager.prev();
             },
             0.5

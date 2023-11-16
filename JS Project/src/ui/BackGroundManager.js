@@ -8,6 +8,10 @@ export default class BackgroundManager {
         this.bgm = [];
     }
 
+    removeAll() {
+        this.bgm[this.Index].stop();
+    }
+
     add(bgImageKey, bgmKey, scale = 1, x, y) {
         const bg = this.scene.add.image(0, 0, bgImageKey).setScale(scale);
         bg.setOrigin(x, y);
