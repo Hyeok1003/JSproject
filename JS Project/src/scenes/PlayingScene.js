@@ -159,7 +159,7 @@ export default class PlayingScene extends Phaser.Scene {
 
         switch (this.m_topBar.m_level) {
             case 2:
-                removeOldestMobEvent(this);
+                
                 addMobEvent(this, 1000, "mob2", "mob2_anim", 20, 0.8);
                 // claw 공격 크기 확대
                 setAttackScale(this, "claw", 4);
@@ -184,6 +184,8 @@ export default class PlayingScene extends Phaser.Scene {
                 addAttackEvent(this, "beam", 10, 1, 1000);
                 break;
             case 6:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 700, "mob4", "mob4_anim", 50, 0.6)
                 // beam 공격 크기 및 데미지 확대
                 setAttackScale(this, "beam", 2);
                 setAttackDamage(this, "beam", 40);
