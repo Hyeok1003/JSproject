@@ -19,6 +19,8 @@ export default class GameOverScene extends Phaser.Scene {
     create() {
         const GameOver_img = this.add.image(0, 0, "GameSet").setScale(0.295);
         GameOver_img.setOrigin(0, 0);
+        const GameOverBGM  = this.sound.add("GameOverBGM");
+        GameOverBGM.play({ loop: true });
 
         this.add.bitmapText(
             Config.width / 2,
@@ -56,7 +58,10 @@ export default class GameOverScene extends Phaser.Scene {
             Config.height / 2 + 180,
             "gameover",
             this,
-            () => this.scene.start("mainScene"),
+            () => {
+                GameOverBGM.stop()
+                this.scene.start("mainScene")
+            },
             0.77
         );
     }
