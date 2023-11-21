@@ -50,7 +50,7 @@ export default class MainScene extends Phaser.Scene {
             () => {
                 mainBGM1.stop();
                 this.bgManager.removeAll();
-                this.scene.start("playGame")
+                this.scene.start("charChoice")
             },
             0.4
         );

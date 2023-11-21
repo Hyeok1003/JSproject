@@ -26,6 +26,10 @@ import gameoverImg from "../assets/images/gameover.png";
 import rightArrow from "../assets/images/BgOptionR.png"
 import leftArrow from "../assets/images/BgOptionL.png"
 
+//캐릭터 선택창 ui관련 이미지
+import Male from "../assets/images/Male.png";
+import Female from "../assets/images/Female.png"
+
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
@@ -72,11 +76,15 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.image("GameClaerBack", ClearBg);
         this.load.image("GameSet", GameOverBg);
 
-        // IMAGES
+        //IMAGES
         this.load.image("background1", bgImg1);
         this.load.image("background2", bgImg2);
         this.load.image("background3", bgImg3);
         this.load.image("beam", beamImg);
+
+        //CharImages
+        this.load.image("Male", Male);
+        this.load.image("Female", Female);
 
         // SPRITESHEETS
         this.load.spritesheet("player", playerImg, {
