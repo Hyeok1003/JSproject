@@ -21,7 +21,7 @@ export default class CharChoiceScene extends Phaser.Scene {
             .setVisible(false);
 
         const Female_Char = this.add
-            .sprite(Config.width / 2, Config.height / 2, "Female")
+            .sprite(Config.width / 2, Config.height / 2, "Female_player")
             .setScale(2)
             .play("FemalePlayer_idle")
             .setVisible(false);
