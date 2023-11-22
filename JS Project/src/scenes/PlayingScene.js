@@ -62,7 +62,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.m_weaponStatic = this.add.group();
         this.m_attackEvents = {};
         // scene, attackType, attackDamage, attackScale, repeatGap
-        addAttackEvent(this, "claw", 10, 2.3, 1500);
+        addAttackEvent(this, "beam", 10, 1, 1000);
 
         // 보스몹이 잘 추가되는지 확인하기 위해 create 메서드 내에서 addMob을 실행시켜봅니다.
         // addMob(this, "lion", "lion_anim", 100, 0);
@@ -166,39 +166,60 @@ export default class PlayingScene extends Phaser.Scene {
             case 2:
                 
                 addMobEvent(this, 1000, "mob2", "mob2_anim", 20, 0.8);
-                // claw 공격 크기 확대
-                setAttackScale(this, "claw", 4);
+                
                 break;
             case 3:
                 removeOldestMobEvent(this);
                 addMobEvent(this, 1000, "mob3", "mob3_anim", 30, 0.7);
                 // catnip 공격 추가
-                addAttackEvent(this, "catnip", 10, 2);
+                addAttackEvent(this, "catnip", 5, 2);
                 break;
             case 4:
                 removeOldestMobEvent(this);
                 addMobEvent(this, 1000, "mob4", "mob4_anim", 40, 0.7);
-                // catnip 공격 크기 확대
-                setAttackScale(this, "catnip", 3);
                 setBackground(this, "background3");
                 break;
             case 5:
-                // claw 공격 삭제
-                removeAttack(this, "claw");
-                // beam 공격 추가
-                addAttackEvent(this, "beam", 10, 1, 1000);
+                // catnip 크기 확대
+                setAttackScale(this, "catnip", 3);
                 break;
             case 6:
                 removeOldestMobEvent(this);
-                addMobEvent(this, 700, "mob4", "mob4_anim", 50, 0.6)
+                addMobEvent(this, 700, "mob4", "mob4_anim", 80, 0.6);
                 // beam 공격 크기 및 데미지 확대
                 setAttackScale(this, "beam", 2);
-                setAttackDamage(this, "beam", 40);
+                setAttackDamage(this, "beam", 30);
                 break;
             case 7:
-                addMob(this, "boss1", "boss1_anim", 200, 0);
+                removeOldestMobEvent(this);
+                addMob(this, "boss1", "boss1_anim", 300, 0);
                 setBackground(this, "background3");
                 break;
+            case 10:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 800, "mob5", "mob5_anim", 150, 0.4);
+                setBackground(this, "background4");
+
+                addAttackEvent(this, "claw", 10, 2.3, 1500);
+                setAttackDamage(this, "catnip", 10);
+                break;
+            case 12:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 600, "mob5", "mob5_anim", 200, 0.4);
+                setAttackDamage(this, "catnip", 15);
+                setAttackScale(this, "catnip", 5);
+                break;
+            case 13:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 600, "mob6", "mob6_anim", 250, 0.4);
+                break;
+            case 15:
+                // claw 공격 크기 확대
+                setAttackScale(this, "claw", 4);
+                addMob(this, "boss1", "boss1_anim", 1000, 0);
+                setBackground(this, "background5");
+                break;
+                
         }
     }
 

@@ -5,6 +5,8 @@ import fontXml from "../assets/font/font.xml";
 import bgImg1 from "../assets/images/background.png";
 import bgImg2 from "../assets/images/background-2.png";
 import bgImg3 from "../assets/images/background-3.png";
+import bgImg4 from "../assets/images/background-4.png";
+import bgImg5 from "../assets/images/background-5.png";
 import beamImg from "../assets/images/beam.png";
 
 //메인화면 이미지 로드
@@ -32,6 +34,8 @@ import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
 import mobImg3 from "../assets/spritesheets/mob3.png";
 import mobImg4 from "../assets/spritesheets/mob4.png";
+import mobImg5 from "../assets/spritesheets/mob5.png";
+import mobImg6 from "../assets/spritesheets/mob6.png";
 import bossImg1 from "../assets/spritesheets/boss1.png";
 import catnipImg from "../assets/spritesheets/catnip.png";
 import clawWhiteImg from "../assets/spritesheets/claw-white.png";
@@ -75,6 +79,8 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.image("background1", bgImg1);
         this.load.image("background2", bgImg2);
         this.load.image("background3", bgImg3);
+        this.load.image("background4", bgImg4);
+        this.load.image("background5", bgImg5);
         this.load.image("beam", beamImg);
 
         // SPRITESHEETS
@@ -97,6 +103,14 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.spritesheet("mob4", mobImg4, {
             frameWidth: 237/4,
             frameHeight: 68,
+        });
+        this.load.spritesheet("mob5", mobImg5, {
+            frameWidth: 897/6,
+            frameHeight: 108,
+        });
+        this.load.spritesheet("mob6", mobImg6, {
+            frameWidth: 743/9,
+            frameHeight: 91,
         });
         this.load.spritesheet("boss1", bossImg1, {
             frameWidth: 255,
@@ -172,6 +186,18 @@ export default class LoadingScene extends Phaser.Scene {
             key: "mob4_anim",
             frames: this.anims.generateFrameNumbers("mob4"),
             frameRate: 4,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: "mob5_anim",
+            frames: this.anims.generateFrameNumbers("mob5"),
+            frameRate: 6,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: "mob6_anim",
+            frames: this.anims.generateFrameNumbers("mob6"),
+            frameRate: 9,
             repeat: -1,
         });
         this.anims.create({
