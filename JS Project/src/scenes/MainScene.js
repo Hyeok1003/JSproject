@@ -28,7 +28,7 @@ export default class MainScene extends Phaser.Scene {
 
         this.bgManager.add("mainback", "MainBGM1", 0.77, 0.5, 0.5);
         this.bgManager.add("mainback2", "MainBGM2", 0.5, 0.09, 0);
-        
+
         // 게임 제목을 상단에 추가합니다.
         this.add
             .bitmapText(Config.width / 2, 150, "pixelFont", "Ghost Survivor", 60)

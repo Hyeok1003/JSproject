@@ -27,11 +27,13 @@ import rightArrow from "../assets/images/BgOptionR.png"
 import leftArrow from "../assets/images/BgOptionL.png"
 
 //캐릭터 선택창 ui관련 이미지
+import choiceScene from "../assets/images/choiceScene.png"
 import Male from "../assets/images/Male.png";
 import Female from "../assets/images/Female.png"
 
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
+import FemaleChar from "../assets/spritesheets/Female_player.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
 import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
@@ -81,6 +83,7 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.image("background2", bgImg2);
         this.load.image("background3", bgImg3);
         this.load.image("beam", beamImg);
+        this.load.image("choiceScene", choiceScene);
 
         //CharImages
         this.load.image("Male", Male);
@@ -90,6 +93,10 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.spritesheet("player", playerImg, {
             frameWidth: 532/7,
             frameHeight: 86,
+        });
+        this.load.spritesheet("Female_player", FemaleChar, {
+            frameWidth: 492/7,
+            frameHeight: 87,
         });
         this.load.spritesheet("mob1", mobImg1, {
             frameWidth: 177 / 4,
@@ -216,7 +223,22 @@ export default class LoadingScene extends Phaser.Scene {
             frameRate: 1,
             repeat: 0,
         });
-
+        this.anims.create({
+            key: "FemalePlayer_anim",
+            frames: this.anims.generateFrameNumbers("Female_player"),
+            frameRate: 7,
+            repeat: -1,
+        })
+        this.anims.create({
+            key: "FemalePlayer_idle",
+            frames: this.anims.generateFrameNumbers("Female_player", {
+                start: 0,
+                end: 0,
+            }),
+            frameRate: 1,
+            repeat: 0,
+        })
+        
         // EFFECT
         this.anims.create({
             key: "explode",
