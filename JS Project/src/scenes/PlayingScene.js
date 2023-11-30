@@ -15,6 +15,10 @@ export default class PlayingScene extends Phaser.Scene {
         super("playGame");
     }
 
+    init(data) {
+        this.value1 = data.value; // value1을 해당 클래스의 멤버 변수로 설정합니다.
+    }
+
     create() {
         // 사용할 sound들을 추가해놓는 부분입니다.
         // load는 전역적으로 어떤 scene에서든 asset을 사용할 수 있도록 load 해주는 것이고,
@@ -210,18 +214,35 @@ export default class PlayingScene extends Phaser.Scene {
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
-            || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
-            if (!this.m_player.m_moving) {
-                this.m_player.play("player_anim");
+        if(this.value1 === 1) {
+            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+                if (!this.m_player.m_moving) {
+                    this.m_player.play("player_anim");
+                }
+                this.m_player.m_moving = true;
+            } 
+            else {
+                if (this.m_player.m_moving) {
+                    this.m_player.play("player_idle");
+                }
+                this.m_player.m_moving = false;
             }
-            this.m_player.m_moving = true;
-        } 
-        else {
-            if (this.m_player.m_moving) {
-                this.m_player.play("player_idle");
+        }
+        else if(this.value1 === 2) {
+            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+                if (!this.m_player.m_moving) {
+                    this.m_player.play("FemalePlayer_anim");
+                }
+                this.m_player.m_moving = true;
+            } 
+            else {
+                if (this.m_player.m_moving) {
+                    this.m_player.play("FemalePlayer_idle");
+                }
+                this.m_player.m_moving = false;
             }
-            this.m_player.m_moving = false;
         }
     
 

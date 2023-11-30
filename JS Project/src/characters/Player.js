@@ -5,10 +5,19 @@ import { loseGame } from "../utils/sceneManager";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
+        super(scene, /*...*/);
+        this.scene = scene; // Scene 객체를 멤버 변수로 저장합니다.
+
+        const value = this.scene.scene.settings.data.value;
         // 화면의 가운데에 player를 추가해줍니다.
         // scene.add.existing : scene에 오브젝트를 추가
         // scene.physics.add.existing : scene의 물리엔진에 오브젝트를 추가
-        super(scene, Config.width / 2, Config.height / 2, "player");
+        if (value === 1) {
+            super(scene, Config.width / 2, Config.height / 2, "player");
+        }
+        else if (value === 2) {
+            super(scene, Config.width / 2, Config.height / 2, "Female_player");
+        }
         scene.add.existing(this);
         scene.physics.add.existing(this);
 

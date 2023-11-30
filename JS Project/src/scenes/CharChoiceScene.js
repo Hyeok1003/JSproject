@@ -8,19 +8,22 @@ import Player from "../characters/Player";
 export default class CharChoiceScene extends Phaser.Scene {
     constructor() {
         super("charChoice");
+
+        this.MaleChar = null;
+        this.FemaleChar = null;
     }
 
     create() {
         const choice = this.add.image(0, 0, "choiceScene").setScale(1);
         choice.setOrigin(0.5, 0.5);
 
-        const MaleChar = this.add
+        this.MaleChar = this.add
             .sprite(Config.width / 2, Config.height / 2, "player")
             .setScale(2)
             .play("player_idle")
             .setVisible(false);
 
-        const Female_Char = this.add
+        this.FemaleChar = this.add
             .sprite(Config.width / 2, Config.height / 2, "Female_player")
             .setScale(2)
             .play("FemalePlayer_idle")
@@ -59,19 +62,19 @@ export default class CharChoiceScene extends Phaser.Scene {
             "Male",
             this,
             () => {
-                this.scene.start("playGame")
+                this.scene.start("playGame", { value: 1 });
             },
             1
         );
 
         button1.on('pointerover', () => {
-            MaleChar.setVisible(true);
-            MaleChar.play("player_anim");
+            this.MaleChar.setVisible(true);
+            this.MaleChar.play("player_anim");
         })
 
         button1.on('pointerout', () => {
-            MaleChar.setVisible(false);
-            MaleChar.play("player_idle");
+            this.MaleChar.setVisible(false);
+            this.MaleChar.play("player_idle");
         })
 
         const button2 = new Button(
@@ -80,19 +83,19 @@ export default class CharChoiceScene extends Phaser.Scene {
             "Female",
             this,
             () => {
-                this.scene.start("playGame")
+                this.scene.start("playGame", { value: 2 });
             },
             0.65
         );
 
         button2.on('pointerover', () => {
-            Female_Char.setVisible(true);
-            Female_Char.play("FemalePlayer_anim");
+            this.FemaleChar.setVisible(true);
+            this.FemaleChar.play("FemalePlayer_anim");
         })
 
         button2.on('pointerout', () => {
-            Female_Char.setVisible(false);
-            Female_Char.play("FemalePlayer_anim");
+            this.FemaleChar.setVisible(false);
+            this.FemaleChar.play("FemalePlayer_idle");
         })
     }
 }

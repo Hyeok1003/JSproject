@@ -6,6 +6,8 @@ export default class BackgroundManager {
         this.backgrounds = [];
         this.Index = 0;
         this.bgm = [];
+        this.selectScene = null;
+        this.selectMusic = null;
     }
 
     removeAll() {
@@ -42,4 +44,18 @@ export default class BackgroundManager {
         const prevIndex = (this.Index - 1 + this.backgrounds.length) % this.backgrounds.length;
         this.show(prevIndex);
     }
+
+    Select() {
+        this.selectScene = this.backgrounds[this.Index];
+        this.selectMusic = this.bgm[this.Index];
+    }
+
+    get_background() {
+        return this.selectScene
+    }
+
+    get_Music() {
+        return this.selectMusic
+    }
+
 }
