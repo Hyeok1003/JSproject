@@ -29,18 +29,26 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
             this.scale = 1;
         } 
         else if (texture === "mob3") {
-            this.setBodySize(24, 32);
+            this.setBodySize(24, 48);
             this.scale = 1
         } 
         else if (texture === "mob4") {
-            this.setBodySize(24, 32);
+            this.setBodySize(24, 48);
             this.scale = 1
         } 
         else if (texture === "boss1") {
-            this.scale = 1;
+            this.scale = 1.3;
             this.m_speed = 60;
-            this.setBodySize(72, 80);
+            this.setBodySize(100, 80);
         }
+        else if (texture === "mob5") {
+            this.setBodySize(164, 126);
+            this.scale = 1
+        } 
+        else if (texture === "mob6") {
+            this.setBodySize(102, 99);
+            this.scale = 1
+        } 
 
         this.m_events = [];
         this.m_events.push(
@@ -114,7 +122,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         // 0.5초 후 1로 변경합니다.
         this.alpha = 0.5;
         this.scene.time.addEvent({
-            delay: 1000,
+            delay: 500,
             callback: () => {
                 this.alpha = 1;
             },
@@ -128,7 +136,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         // 1초 후 true로 변경합니다.
         this.m_canBeAttacked = false;
         this.scene.time.addEvent({
-            delay: 800,
+            delay: 200,
             callback: () => {
                 this.m_canBeAttacked = true;
             },
@@ -152,7 +160,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.scene.time.removeEvent(this.m_events);
 
         // 보스몹이 죽었을 때
-        if (this.texture.key === "boss1") {
+        if (this.texture.key === "last_boss") {
             // 공격을 제거합니다. (attackManager.js 참고)
             removeAttack(this.scene, "catnip");
             removeAttack(this.scene, "beam");
@@ -160,7 +168,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
             // 플레이어가 보스몹과 접촉해도 HP가 깎이지 않도록 만듭니다.
             this.disableBody(true, false);
             // 보스몹이 움직이던 애니메이션을 멉춥니다.
-            this.play("boss1_idle");
+            this.play("last_boss_idle");
             // 모든 몹의 움직임을 멈춥니다.
             this.scene.m_mobs.children.each((mob) => {
                 mob.m_speed = 0;
@@ -174,6 +182,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
                 },
                 repeat: 100,
             });
+            this.destroy();
             // 보스몹이 투명해진 후, GameClearScene으로 화면을 전환합니다.
             this.scene.time.addEvent({
                 delay: 4000,
@@ -182,6 +191,18 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
                 },
                 loop: false,
             });
+        }
+        else if(this.texture.key === "last_boss"){
+            this.disableBody(true, false);
+            // 보스몹이 서서히 투멍해지도록 합니다.
+            this.scene.time.addEvent({
+                delay: 30,
+                callback: () => {
+                    this.alpha -= 0.01;
+                },
+                repeat: 100,
+            });
+            this.destroy();
         }
         // 보스몹이 아닌 몹이 죽었을 때
         else {
