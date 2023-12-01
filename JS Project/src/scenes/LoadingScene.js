@@ -37,7 +37,8 @@ import Hidden from "../assets/images/Hidden_player.png"
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
 import FemaleChar from "../assets/spritesheets/Female_player.png";
-import HiddenChar from "../assets/spritesheets/Hidden.png" ;
+import HiddenChar from "../assets/spritesheets/Hidden.png";
+import HiddenChar2 from "../assets/spritesheets/Hidden2.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
 import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
@@ -110,6 +111,10 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.spritesheet("Hidden_player", HiddenChar, {
             frameWidth: 592/6,
             frameHeight: 132,
+        })
+        this.load.spritesheet("Hidden_player2", HiddenChar2, {
+            frameWidth: 595/4,
+            frameHeight: 129,
         })
         this.load.spritesheet("mob1", mobImg1, {
             frameWidth: 177 / 4,
@@ -278,13 +283,10 @@ export default class LoadingScene extends Phaser.Scene {
             repeat : -1
         })
         this.anims.create({
-            key: "Hidden_player_idle",
-            frames: this.anims.generateFrameNumbers("Hidden_player",{
-                start : 0,
-                end : 0
-            }),
-            frameRate: 1,
-            repeat : 0
+            key: "Hidden_player2_anim",
+            frames: this.anims.generateFrameNumbers("Hidden_player2"),
+            frameRate: 4,
+            repeat : -1
         })
         
         // EFFECT

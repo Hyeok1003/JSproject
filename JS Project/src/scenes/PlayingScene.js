@@ -270,13 +270,14 @@ export default class PlayingScene extends Phaser.Scene {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
                 if (!this.m_player.m_moving) {
-                    this.m_player.play("Hidden_player_anim");
+                    this.m_player.play("Hidden_player2_anim");
+                    // this.m_player.setScale(0.8);
                 }
                 this.m_player.m_moving = true;
             } 
             else {
                 if (this.m_player.m_moving) {
-                    this.m_player.play("Hidden_player_idle");
+                    this.m_player.play("Hidden_player_anim");
                 }
                 this.m_player.m_moving = false;
             }
