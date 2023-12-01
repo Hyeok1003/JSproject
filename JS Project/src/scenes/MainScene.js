@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import Config from "../Config";
 import Button from "../ui/Button";
-import BackgroundManager from "../ui/BackGroundManager";
+import BackGroundManager from "../ui/BackGroundManager"
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
@@ -9,22 +9,24 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        //게임오버 화면 디버그 테스트용 코드
-        // const Gameclear_img = this.add.image(0, 0, "GameSet").setScale(0.3);
-        // Gameclear_img.setOrigin(0, 0);
+        // 배경 이미지 로드
+        const main_img = this.add.image(0, 0, "mainback").setScale(0.77);
+        main_img.setOrigin(0.5, 0.5);
 
-        //초기 메인 브금을 로드.
+        // 노래 추가
         const mainBGM1 = this.sound.add("MainBGM1");
         mainBGM1.play();
         mainBGM1.on(Phaser.Sound.Events.COMPLETE, () => {
             mainBGM1.play();
         });
-        //초기 메인 화면을 로드
-        const main_img = this.add.image(0, 0, "mainback").setScale(0.77);
-        main_img.setOrigin(0.5, 0.5);
 
-        //코드가 너무 길어지는거 같아서 BackgroundManager클래스를 만들어서 파일을 따로 관리함.
-        this.bgManager = new BackgroundManager(this);
+        // 배경색을 채워줍니다.
+        // this.add.graphics()
+        //     .fillStyle(0xbbdefb)
+        //     .fillRect(0, 0, Config.width, Config.height)
+        //     .setScrollFactor(0);
+
+        this.bgManager = new BackGroundManager(this);
 
         this.bgManager.add("mainback", "MainBGM1", 0.77, 0.5, 0.5);
         this.bgManager.add("mainback2", "MainBGM2", 0.5, 0.09, 0);
