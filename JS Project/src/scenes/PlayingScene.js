@@ -15,6 +15,10 @@ export default class PlayingScene extends Phaser.Scene {
         super("playGame");
     }
 
+    init(data) {
+        this.value1 = data.value; // value1을 해당 클래스의 멤버 변수로 설정합니다.
+    }
+
     create() {
         // 사용할 sound들을 추가해놓는 부분입니다.
         // load는 전역적으로 어떤 scene에서든 asset을 사용할 수 있도록 load 해주는 것이고,
@@ -32,6 +36,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.m_gameClearSound = this.sound.add("audio_gameClear");
         this.m_pauseInSound = this.sound.add("audio_pauseIn");
         this.m_pauseOutSound = this.sound.add("audio_pauseOut");
+        this.GameOverBGM = this.sound.add("GameOverBGM");
 
 
         // player를 m_player라는 멤버 변수로 추가합니다.
@@ -43,6 +48,11 @@ export default class PlayingScene extends Phaser.Scene {
         setBackground(this, "background1");
 
         this.m_cursorKeys = this.input.keyboard.createCursorKeys();
+        // 방향키 중복코드
+        // this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        // this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        // this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        // this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         // Mob
         this.m_mobs = this.physics.add.group();
@@ -57,7 +67,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.m_weaponStatic = this.add.group();
         this.m_attackEvents = {};
         // scene, attackType, attackDamage, attackScale, repeatGap
-        addAttackEvent(this, "claw", 10, 2.3, 1500);
+        addAttackEvent(this, "beam", 10, 1, 1000);
 
         // 보스몹이 잘 추가되는지 확인하기 위해 create 메서드 내에서 addMob을 실행시켜봅니다.
         // addMob(this, "lion", "lion_anim", 100, 0);
@@ -161,39 +171,60 @@ export default class PlayingScene extends Phaser.Scene {
             case 2:
                 
                 addMobEvent(this, 1000, "mob2", "mob2_anim", 20, 0.8);
-                // claw 공격 크기 확대
-                setAttackScale(this, "claw", 4);
+                
                 break;
             case 3:
                 removeOldestMobEvent(this);
                 addMobEvent(this, 1000, "mob3", "mob3_anim", 30, 0.7);
                 // catnip 공격 추가
-                addAttackEvent(this, "catnip", 10, 2);
+                addAttackEvent(this, "catnip", 5, 2);
                 break;
             case 4:
                 removeOldestMobEvent(this);
                 addMobEvent(this, 1000, "mob4", "mob4_anim", 40, 0.7);
-                // catnip 공격 크기 확대
-                setAttackScale(this, "catnip", 3);
                 setBackground(this, "background3");
                 break;
             case 5:
-                // claw 공격 삭제
-                removeAttack(this, "claw");
-                // beam 공격 추가
-                addAttackEvent(this, "beam", 10, 1, 1000);
+                // catnip 크기 확대
+                setAttackScale(this, "catnip", 3);
                 break;
             case 6:
                 removeOldestMobEvent(this);
-                addMobEvent(this, 700, "mob4", "mob4_anim", 50, 0.6)
+                addMobEvent(this, 700, "mob4", "mob4_anim", 80, 0.6);
                 // beam 공격 크기 및 데미지 확대
                 setAttackScale(this, "beam", 2);
-                setAttackDamage(this, "beam", 40);
+                setAttackDamage(this, "beam", 30);
                 break;
             case 7:
-                addMob(this, "boss1", "boss1_anim", 200, 0);
+                removeOldestMobEvent(this);
+                addMob(this, "boss1", "boss1_anim", 300, 0);
                 setBackground(this, "background3");
                 break;
+            case 10:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 800, "mob5", "mob5_anim", 150, 0.4);
+                setBackground(this, "background4");
+
+                addAttackEvent(this, "claw", 10, 2.3, 1500);
+                setAttackDamage(this, "catnip", 10);
+                break;
+            case 12:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 600, "mob5", "mob5_anim", 200, 0.4);
+                setAttackDamage(this, "catnip", 15);
+                setAttackScale(this, "catnip", 5);
+                break;
+            case 13:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 600, "mob6", "mob6_anim", 250, 0.4);
+                break;
+            case 15:
+                // claw 공격 크기 확대
+                setAttackScale(this, "claw", 4);
+                addMob(this, "boss1", "boss1_anim", 1000, 0);
+                setBackground(this, "background5");
+                break;
+                
         }
     }
 
@@ -204,23 +235,75 @@ export default class PlayingScene extends Phaser.Scene {
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
-            if (!this.m_player.m_moving) {
-                this.m_player.play("player_anim");
+        if(this.value1 === 1) {
+            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+                if (!this.m_player.m_moving) {
+                    this.m_player.play("player_anim");
+                }
+                this.m_player.m_moving = true;
+            } 
+            else {
+                if (this.m_player.m_moving) {
+                    this.m_player.play("player_idle");
+                }
+                this.m_player.m_moving = false;
             }
-            this.m_player.m_moving = true;
-        } else {
-            if (this.m_player.m_moving) {
-                this.m_player.play("player_idle");
-            }
-            this.m_player.m_moving = false;
         }
+        else if(this.value1 === 2) {
+            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+                if (!this.m_player.m_moving) {
+                    this.m_player.play("FemalePlayer_anim");
+                }
+                this.m_player.m_moving = true;
+            } 
+            else {
+                if (this.m_player.m_moving) {
+                    this.m_player.play("FemalePlayer_idle");
+                }
+                this.m_player.m_moving = false;
+            }
+        }
+
+        else if(this.value1 === 3) {
+            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+                if (!this.m_player.m_moving) {
+                    this.m_player.play("Hidden_player2_anim");
+                    // this.m_player.setScale(0.8);
+                }
+                this.m_player.m_moving = true;
+            } 
+            else {
+                if (this.m_player.m_moving) {
+                    this.m_player.play("Hidden_player_anim");
+                }
+                this.m_player.m_moving = false;
+            }
+        }
+    
 
         // vector를 사용해 움직임을 관리할 것입니다.
         // vector = [x좌표 방향, y좌표 방향]입니다.
         // 왼쪽 키가 눌려있을 때는 vector[0] += -1, 오른쪽 키가 눌려있을 때는 vector[0] += 1을 해줍니다.
         // 위/아래 또한 같은 방법으로 벡터를 수정해줍니다.
         let vector = [0, 0];
+
+        // 방향키로 움직이는 것
+        // if (this.m_cursorKeys.left.isDown) {
+        //     // player.x -= PLAYER_SPEED // 공개영상에서 진행했던 것
+        //     vector[0] += -1;
+        // } else if (this.m_cursorKeys.right.isDown) {
+        //     vector[0] += 1;
+        // }
+
+        // if (this.m_cursorKeys.up.isDown) {
+        //     vector[1] += -1;
+        // } else if (this.m_cursorKeys.down.isDown) {
+        //     vector[1] += 1;
+        // }
+
         if (this.m_cursorKeys.left.isDown || this.keyA.isDown) {
             // player.x -= PLAYER_SPEED // 공개영상에서 진행했던 것
             vector[0] += -1;
@@ -241,5 +324,4 @@ export default class PlayingScene extends Phaser.Scene {
             weapon.move(vector);
         }, this);
     }
-
 }

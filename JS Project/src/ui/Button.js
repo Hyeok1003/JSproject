@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 
+// 텍스트 기반 버튼
 // export default class Button extends Phaser.GameObjects.Text {
 //     constructor(x, y, label, scene, callback) {
 //         super(scene, x, y, label);

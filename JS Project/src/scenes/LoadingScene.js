@@ -5,15 +5,47 @@ import fontXml from "../assets/font/font.xml";
 import bgImg1 from "../assets/images/background.png";
 import bgImg2 from "../assets/images/background-2.png";
 import bgImg3 from "../assets/images/background-3.png";
+import bgImg4 from "../assets/images/background-4.png";
+import bgImg5 from "../assets/images/background-5.png";
 import beamImg from "../assets/images/beam.png";
+
+//메인화면 이미지 로드
+import mainbg from "../assets/images/mainbg2-1.png";
+import mainbg2 from "../assets/images/mainbg2-2.png";
+
+//게임클리어 및 종료 배경 로드
+import ClearBg from "../assets/images/ClaerBg.png";
+import GameOverBg from "../assets/images/GameOverBg.png";
+
+//사운드 파일 로드
+import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
+import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
+import GameOverBGM from "../assets/sounds/BGM/BGM_dark.mp3";
+
+//버튼 이미지 로드
+import startImg from "../assets/images/gamestart.png";
+import gameoverImg from "../assets/images/gameover.png";
+import rightArrow from "../assets/images/BgOptionR.png"
+import leftArrow from "../assets/images/BgOptionL.png"
+
+//캐릭터 선택창 ui관련 이미지
+import choiceScene from "../assets/images/choiceScene.png"
+import Male from "../assets/images/Male.png";
+import Female from "../assets/images/Female.png"
+import Hidden from "../assets/images/Hidden_player.png"
 
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
+import FemaleChar from "../assets/spritesheets/Female_player.png";
+import HiddenChar from "../assets/spritesheets/Hidden.png";
+import HiddenChar2 from "../assets/spritesheets/Hidden2.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
 import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
 import mobImg3 from "../assets/spritesheets/mob3.png";
 import mobImg4 from "../assets/spritesheets/mob4.png";
+import mobImg5 from "../assets/spritesheets/mob5.png";
+import mobImg6 from "../assets/spritesheets/mob6.png";
 import bossImg1 from "../assets/spritesheets/boss1.png";
 import catnipImg from "../assets/spritesheets/catnip.png";
 import clawWhiteImg from "../assets/spritesheets/claw-white.png";
@@ -32,12 +64,6 @@ import gameClearOgg from "../assets/sounds/gameClear.ogg";
 import pauseInOgg from "../assets/sounds/pauseIn.ogg";
 import pauseOutOgg from "../assets/sounds/pauseOut.ogg";
 
-//메인화면 이미지 로드
-import mainbg from "../assets/images/mainbg2-1.png";
-
-//버튼 이미지 로드
-import startImg from "../assets/images/gamestart.png";
-
 export default class LoadingScene extends Phaser.Scene {
     constructor() {
         // super에 파라미터로 넘겨주는 string이 해당 scene의 identifier가 됩니다.
@@ -45,23 +71,51 @@ export default class LoadingScene extends Phaser.Scene {
     }
 
     preload() {
-        // MainBg
+        //main background image
         this.load.image("mainback", mainbg);
+        this.load.image("mainback2", mainbg2)
 
-        // start Button
+        //button
         this.load.image("start", startImg);
+        this.load.image("gameover", gameoverImg);
+        this.load.image("rightArrow", rightArrow);
+        this.load.image("leftArrow", leftArrow);
 
-        // IMAGES
+        //BackGround Images
+        this.load.image("GameClaerBack", ClearBg);
+        this.load.image("GameSet", GameOverBg);
+
+        //IMAGES
         this.load.image("background1", bgImg1);
         this.load.image("background2", bgImg2);
         this.load.image("background3", bgImg3);
+        this.load.image("background4", bgImg4);
+        this.load.image("background5", bgImg5);
         this.load.image("beam", beamImg);
+        this.load.image("choiceScene", choiceScene);
+
+        //CharImages
+        this.load.image("Male", Male);
+        this.load.image("Female", Female);
+        this.load.image("Hidden", Hidden);
 
         // SPRITESHEETS
         this.load.spritesheet("player", playerImg, {
             frameWidth: 532/7,
             frameHeight: 86,
         });
+        this.load.spritesheet("Female_player", FemaleChar, {
+            frameWidth: 492/7,
+            frameHeight: 87,
+        });
+        this.load.spritesheet("Hidden_player", HiddenChar, {
+            frameWidth: 592/6,
+            frameHeight: 132,
+        })
+        this.load.spritesheet("Hidden_player2", HiddenChar2, {
+            frameWidth: 595/4,
+            frameHeight: 129,
+        })
         this.load.spritesheet("mob1", mobImg1, {
             frameWidth: 177 / 4,
             frameHeight: 46,
@@ -77,6 +131,14 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.spritesheet("mob4", mobImg4, {
             frameWidth: 237/4,
             frameHeight: 68,
+        });
+        this.load.spritesheet("mob5", mobImg5, {
+            frameWidth: 897/6,
+            frameHeight: 108,
+        });
+        this.load.spritesheet("mob6", mobImg6, {
+            frameWidth: 743/9,
+            frameHeight: 91,
         });
         this.load.spritesheet("boss1", bossImg1, {
             frameWidth: 255,
@@ -117,6 +179,11 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.audio("audio_pauseIn", pauseInOgg);
         this.load.audio("audio_pauseOut", pauseOutOgg);
 
+        //귀혼 메인BGM로드
+        this.load.audio("MainBGM1", MainBGM1);
+        this.load.audio("MainBGM2", MainBGM2);
+        this.load.audio("GameOverBGM", GameOverBGM);
+
         // FONT
         this.load.bitmapFont("pixelFont", fontPng, fontXml);
     }
@@ -151,6 +218,18 @@ export default class LoadingScene extends Phaser.Scene {
             repeat: -1,
         });
         this.anims.create({
+            key: "mob5_anim",
+            frames: this.anims.generateFrameNumbers("mob5"),
+            frameRate: 6,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: "mob6_anim",
+            frames: this.anims.generateFrameNumbers("mob6"),
+            frameRate: 9,
+            repeat: -1,
+        });
+        this.anims.create({
             key: "boss1_anim",
             frames: this.anims.generateFrameNumbers("boss1"),
             frameRate: 4,
@@ -182,7 +261,34 @@ export default class LoadingScene extends Phaser.Scene {
             frameRate: 1,
             repeat: 0,
         });
-
+        this.anims.create({
+            key: "FemalePlayer_anim",
+            frames: this.anims.generateFrameNumbers("Female_player"),
+            frameRate: 7,
+            repeat: -1,
+        })
+        this.anims.create({
+            key: "FemalePlayer_idle",
+            frames: this.anims.generateFrameNumbers("Female_player", {
+                start: 0,
+                end: 0,
+            }),
+            frameRate: 1,
+            repeat: 0,
+        })
+        this.anims.create({
+            key: "Hidden_player_anim",
+            frames: this.anims.generateFrameNumbers("Hidden_player"),
+            frameRate: 6,
+            repeat : -1
+        })
+        this.anims.create({
+            key: "Hidden_player2_anim",
+            frames: this.anims.generateFrameNumbers("Hidden_player2"),
+            frameRate: 4,
+            repeat : -1
+        })
+        
         // EFFECT
         this.anims.create({
             key: "explode",

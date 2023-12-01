@@ -16,11 +16,9 @@ export default class GameClearScene extends Phaser.Scene {
     }
 
     create() {
-        // 배경을 추가해주는 부분입니다.
-        const bg = this.add.graphics();
-        bg.fillStyle(0x5abeff);
-        bg.fillRect(0, 0, Config.width, Config.height);
-        bg.setScrollFactor(0);
+        // 배경이미지 추가하는 코드.
+        const Gameclear_img = this.add.image(0, 0, "GameClaerBack").setScale(1.8);
+        Gameclear_img.setOrigin(0, 0);
 
         // 상단 문구를 추가하는 부분입니다.
         this.add
@@ -28,7 +26,7 @@ export default class GameClearScene extends Phaser.Scene {
                 Config.width / 2,
                 Config.height / 2 - 180,
                 "pixelFont",
-                "Game Clear !!",
+                "You Win !!",
                 80
             )
             .setOrigin(0.5);
@@ -56,7 +54,7 @@ export default class GameClearScene extends Phaser.Scene {
         new Button(
             Config.width / 2,
             Config.height / 2 + 180,
-            "Go to Main",
+            "gameover",
             this,
             () => this.scene.start("mainScene")
         );
