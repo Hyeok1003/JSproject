@@ -56,10 +56,6 @@ export default class MainScene extends Phaser.Scene {
             "start",
             this,
             () => {
-<<<<<<< HEAD
-                this.scene.start("playGame")
-            },0.4
-=======
                 mainBGM1.stop();
                 this.bgManager.removeAll();
                 if(this.value_H === 1) {
@@ -70,7 +66,6 @@ export default class MainScene extends Phaser.Scene {
                 }
             },
             0.4
->>>>>>> sub
         );
 
         new Button(
@@ -86,11 +81,7 @@ export default class MainScene extends Phaser.Scene {
         )
 
         this.add
-<<<<<<< HEAD
-        .bitmapText(Config.width / 2 + 480, 693, "pixelFont", "BGM Change", 30)
-=======
         .bitmapText(Config.width / 2 + 480, 693, "pixelFont", "change scene", 30)
->>>>>>> sub
         .setOrigin(0.5);
 
         new Button(
