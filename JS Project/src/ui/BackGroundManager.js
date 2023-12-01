@@ -6,6 +6,12 @@ export default class BackgroundManager {
         this.backgrounds = [];
         this.Index = 0;
         this.bgm = [];
+        this.selectScene = null;
+        this.selectMusic = null;
+    }
+
+    removeAll() {
+        this.bgm[this.Index].stop();
     }
 
     add(bgImageKey, bgmKey, scale = 1, x, y) {
@@ -14,7 +20,7 @@ export default class BackgroundManager {
         bg.setVisible(false);
         this.backgrounds.push(bg);
 
-        const music = this.scene.sound.add(bgmKey);
+        const music = this.scene.sound.add(bgmKey, { loop: true }); // loop 옵션을 true로 설정하여 무한반복
         music.play();
         music.pause();
         this.bgm.push(music);
@@ -38,4 +44,18 @@ export default class BackgroundManager {
         const prevIndex = (this.Index - 1 + this.backgrounds.length) % this.backgrounds.length;
         this.show(prevIndex);
     }
+
+    Select() {
+        this.selectScene = this.backgrounds[this.Index];
+        this.selectMusic = this.bgm[this.Index];
+    }
+
+    get_background() {
+        return this.selectScene
+    }
+
+    get_Music() {
+        return this.selectMusic
+    }
+
 }

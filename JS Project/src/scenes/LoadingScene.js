@@ -23,6 +23,7 @@ import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
 import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
 import StageBGM1_1 from "../assets/sounds/BGM/BGM_light.mp3";
 import StageBGM1_2 from "../assets/sounds/BGM/BGM_cold.mp3";
+import GameOverBGM from "../assets/sounds/BGM/BGM_dark.mp3";
 
 //버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
@@ -30,8 +31,17 @@ import gameoverImg from "../assets/images/gameover.png";
 import rightArrow from "../assets/images/BgOptionR.png"
 import leftArrow from "../assets/images/BgOptionL.png"
 
+//캐릭터 선택창 ui관련 이미지
+import choiceScene from "../assets/images/choiceScene.png"
+import Male from "../assets/images/Male.png";
+import Female from "../assets/images/Female.png"
+import Hidden from "../assets/images/Hidden_player.png"
+
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
+import FemaleChar from "../assets/spritesheets/Female_player.png";
+import HiddenChar from "../assets/spritesheets/Hidden.png";
+import HiddenChar2 from "../assets/spritesheets/Hidden2.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
 import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
@@ -83,7 +93,7 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.image("GameClaerBack", ClearBg);
         this.load.image("GameSet", GameOverBg);
 
-        // IMAGES
+        //IMAGES
         this.load.image("background1", bgImg1);
         this.load.image("background2", bgImg2);
         this.load.image("background3", bgImg3);
@@ -91,12 +101,30 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.image("background5", bgImg5);
         this.load.image("beam", beamImg);
         this.load.image("whanma_fire", whanma_fireImg)
+        this.load.image("choiceScene", choiceScene);
+
+        //CharImages
+        this.load.image("Male", Male);
+        this.load.image("Female", Female);
+        this.load.image("Hidden", Hidden);
 
         // SPRITESHEETS
         this.load.spritesheet("player", playerImg, {
             frameWidth: 532/7,
             frameHeight: 86,
         });
+        this.load.spritesheet("Female_player", FemaleChar, {
+            frameWidth: 492/7,
+            frameHeight: 87,
+        });
+        this.load.spritesheet("Hidden_player", HiddenChar, {
+            frameWidth: 592/6,
+            frameHeight: 132,
+        })
+        this.load.spritesheet("Hidden_player2", HiddenChar2, {
+            frameWidth: 595/4,
+            frameHeight: 129,
+        })
         this.load.spritesheet("mob1", mobImg1, {
             frameWidth: 177 / 4,
             frameHeight: 46,
@@ -183,6 +211,7 @@ export default class LoadingScene extends Phaser.Scene {
         //귀혼 메인BGM로드
         this.load.audio("MainBGM1", MainBGM1);
         this.load.audio("MainBGM2", MainBGM2);
+        this.load.audio("GameOverBGM", GameOverBGM);
 
         // 스테이지 브금
         this.load.audio("BGM_S1", StageBGM1_1);
@@ -304,7 +333,34 @@ export default class LoadingScene extends Phaser.Scene {
             frameRate: 1,
             repeat: 0,
         });
-
+        this.anims.create({
+            key: "FemalePlayer_anim",
+            frames: this.anims.generateFrameNumbers("Female_player"),
+            frameRate: 7,
+            repeat: -1,
+        })
+        this.anims.create({
+            key: "FemalePlayer_idle",
+            frames: this.anims.generateFrameNumbers("Female_player", {
+                start: 0,
+                end: 0,
+            }),
+            frameRate: 1,
+            repeat: 0,
+        })
+        this.anims.create({
+            key: "Hidden_player_anim",
+            frames: this.anims.generateFrameNumbers("Hidden_player"),
+            frameRate: 6,
+            repeat : -1
+        })
+        this.anims.create({
+            key: "Hidden_player2_anim",
+            frames: this.anims.generateFrameNumbers("Hidden_player2"),
+            frameRate: 4,
+            repeat : -1
+        })
+        
         // EFFECT
         this.anims.create({
             key: "explode",

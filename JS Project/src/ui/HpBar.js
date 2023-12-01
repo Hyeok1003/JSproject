@@ -7,14 +7,24 @@ export default class HpBar extends Phaser.GameObjects.Graphics {
     constructor(scene, player, maxHp) {
         super(scene);
 
+        this.scene = scene; // Scene 객체를 멤버 변수로 저장합니다.
+
+        const value_HHH = this.scene.scene.settings.data.value;
+
         // HP Bar의 width, height, border를 설정해줍니다.
         this.WIDTH = 60;
         this.HEIGHT = 12;
         this.BORDER = 2;
 
         // (m_x, m_y)로 HP bar의 맨 왼쪽 위 지점을 지정합니다.
-        this.m_x = player.x - this.WIDTH / 2;
-        this.m_y = player.y + 40;
+        if (value_HHH === 3) {
+            this.m_x = player.x - this.WIDTH / 2;
+            this.m_y = player.y + 60;
+        }
+        else {
+            this.m_x = player.x - this.WIDTH / 2;
+            this.m_y = player.y + 40;
+        }
 
         // 최대 HP, 현재 HP 값을 저장할 멤버 변수를 만들어줍니다.
         // 처음에는 HP가 최대입니다.
