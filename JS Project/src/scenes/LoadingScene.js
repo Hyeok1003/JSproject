@@ -32,10 +32,12 @@ import leftArrow from "../assets/images/BgOptionL.png"
 import choiceScene from "../assets/images/choiceScene.png"
 import Male from "../assets/images/Male.png";
 import Female from "../assets/images/Female.png"
+import Hidden from "../assets/images/Hidden_player.png"
 
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
 import FemaleChar from "../assets/spritesheets/Female_player.png";
+import HiddenChar from "../assets/spritesheets/Hidden.png" ;
 import expUpImg from "../assets/spritesheets/expUp.png";
 import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
@@ -94,6 +96,7 @@ export default class LoadingScene extends Phaser.Scene {
         //CharImages
         this.load.image("Male", Male);
         this.load.image("Female", Female);
+        this.load.image("Hidden", Hidden);
 
         // SPRITESHEETS
         this.load.spritesheet("player", playerImg, {
@@ -104,6 +107,10 @@ export default class LoadingScene extends Phaser.Scene {
             frameWidth: 492/7,
             frameHeight: 87,
         });
+        this.load.spritesheet("Hidden_player", HiddenChar, {
+            frameWidth: 592/6,
+            frameHeight: 132,
+        })
         this.load.spritesheet("mob1", mobImg1, {
             frameWidth: 177 / 4,
             frameHeight: 46,
@@ -263,6 +270,21 @@ export default class LoadingScene extends Phaser.Scene {
             }),
             frameRate: 1,
             repeat: 0,
+        })
+        this.anims.create({
+            key: "Hidden_player_anim",
+            frames: this.anims.generateFrameNumbers("Hidden_player"),
+            frameRate: 6,
+            repeat : -1
+        })
+        this.anims.create({
+            key: "Hidden_player_idle",
+            frames: this.anims.generateFrameNumbers("Hidden_player",{
+                start : 0,
+                end : 0
+            }),
+            frameRate: 1,
+            repeat : 0
         })
         
         // EFFECT

@@ -5,7 +5,7 @@ import { loseGame } from "../utils/sceneManager";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
-        super(scene, /*...*/);
+        super(scene);
         this.scene = scene; // Scene 객체를 멤버 변수로 저장합니다.
 
         const value = this.scene.scene.settings.data.value;
@@ -17,6 +17,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
         else if (value === 2) {
             super(scene, Config.width / 2, Config.height / 2, "Female_player");
+        }
+        else if (value === 3) {
+            super(scene, Config.width / 2, Config.height / 2, "Hidden_player");
         }
         scene.add.existing(this);
         scene.physics.add.existing(this);

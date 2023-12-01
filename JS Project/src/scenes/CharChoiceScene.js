@@ -11,6 +11,14 @@ export default class CharChoiceScene extends Phaser.Scene {
 
         this.MaleChar = null;
         this.FemaleChar = null;
+
+        // this.scene = scene; // Scene 객체를 멤버 변수로 저장합니다.
+
+        // this.value_H = this.scene.scene.settings.data.Hidden_value;
+    }
+
+    init(data) {
+        this.value_HH = data.Hidden_value2;
     }
 
     create() {
@@ -34,28 +42,7 @@ export default class CharChoiceScene extends Phaser.Scene {
             .bitmapText(Config.width / 2, 90, "pixelFont", "CharSelect", 60)
             .setOrigin(0.5);
 
-        // // 버튼 생성
-        // const button1 = new ImageButton(
-        //     Config.width / 2 - 230,
-        //     Config.height / 2,
-        //     "player",
-        //     this,
-        //     () => {
-        //         this.MalePlayer.play("player_idle");
-        //         this.scene.start("playGame");
-        //     },
-        //     4
-        // );
-
-        // button1.on('pointerover', () => {
-        //     this.MalePlayer.play("player_anim");
-        // });
-
-        // button1.on('pointerout', () => {
-        //     this.MalePlayer.play("player_idle");
-        // });
-
-        // 캐릭터 선택 버튼(임시 이미지)
+        // 캐릭터 선택 버튼
         const button1 = new Button(
             Config.width / 2 - 300,
             Config.height / 2,
@@ -77,6 +64,24 @@ export default class CharChoiceScene extends Phaser.Scene {
             this.MaleChar.play("player_idle");
         })
 
+        this.Hidden_button = new Button(
+            Config.width / 2,
+            Config.height / 2,
+            "Hidden",
+            this,
+            () => {
+                this.scene.start("playGame", { value: 3 });
+            },
+            0.65
+        );
+        
+        if (this.value_HH === 1) {
+            this.Hidden_button.setVisible(true);
+        } 
+        else {
+            this.Hidden_button.setVisible(false);
+        }
+
         const button2 = new Button(
             Config.width / 2 + 300,
             Config.height / 2,
@@ -97,5 +102,17 @@ export default class CharChoiceScene extends Phaser.Scene {
             this.FemaleChar.setVisible(false);
             this.FemaleChar.play("FemalePlayer_idle");
         })
+
+        // 개발용 코드
+        new Button(
+            Config.width / 2 + 590,
+            Config.height / 2 + 330,
+            "rightArrow",
+            this,
+            () => {
+                this.scene.start("gameOverScene");
+            },
+            0.5
+        )
     }
 }

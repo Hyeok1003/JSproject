@@ -8,6 +8,12 @@ export default class MainScene extends Phaser.Scene {
         super("mainScene");
     }
 
+    init(data) {
+        this.value2 = data.value;
+        this.value_H = data.Hidden_value;
+    }
+
+
     create() {
         // 배경 이미지 로드
         const main_img = this.add.image(0, 0, "mainback").setScale(0.77);
@@ -52,7 +58,12 @@ export default class MainScene extends Phaser.Scene {
             () => {
                 mainBGM1.stop();
                 this.bgManager.removeAll();
-                this.scene.start("charChoice")
+                if(this.value_H === 1) {
+                    this.scene.start("charChoice", { Hidden_value2 : 1 })
+                }
+                else {
+                this.scene.start("charChoice", { Hidden_value2 : 0 })
+                }
             },
             0.4
         );
