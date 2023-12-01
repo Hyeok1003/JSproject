@@ -8,16 +8,40 @@ const ITEM_PROPERTY = {
         color: 'red'
     },
     'mob2': {
-        exp: 20,
+        exp: 15,
         color: 'blue'
     },
     'mob3': {
-        exp: 30,
+        exp: 20,
         color: 'yellow'
     },
     'mob4': {
-        exp: 40,
+        exp: 25,
         color: 'green'
+    },
+    'mob5': {
+        exp: 30,
+        color: 'green'
+    },
+    'mob6': {
+        exp: 35,
+        color: 'green'
+    },
+    'mob7': {
+        exp: 25,
+        color: 'red'
+    },
+    'mob8': {
+        exp: 35,
+        color: 'red'
+    },
+    'mob9': {
+        exp: 80,
+        color: 'green'
+    },
+    'mob10': {
+        exp: 80,
+        color: 'red'
     },
 };
 

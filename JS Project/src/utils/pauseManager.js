@@ -1,5 +1,6 @@
 import game from "../index";
 import Config from "../Config";
+import PlayingScene from "../scenes/PlayingScene";
 
 // pause된 scene을 저장할 변수입니다.
 let scene_paused = null;
@@ -16,9 +17,9 @@ const PAUSE_TEXT_BY_TYPE = {
     },
     "levelup": {
         text: [
-            "You're on the Next Level!",
+            "Level Up!!",
             "",
-            "Press Enter to Keep Going",
+            "Press Enter",
         ],
         fontSize: 40
     }
@@ -29,6 +30,7 @@ export function pause(scene, type) {
     if (Date.now() - time_paused > 100 && game.scene.isActive(scene)) {
         // scene을 일시정지해줍니다.
         game.scene.pause(scene);
+  
 
         // 각종 변수에 값을 설정해줍니다.
         scene_paused = scene;
@@ -59,6 +61,7 @@ document.addEventListener("keydown", (event) => {
         // scene을 재개(resume)해줍니다.
         const previousScene = game.scene.getScene(scene_paused);
         game.scene.resume(scene_paused);
+  
 
         // veil과 문구를 없애줍니다.
         togglePauseScreen(previousScene, false);

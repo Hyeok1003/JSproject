@@ -36,8 +36,37 @@ export default class MainScene extends Phaser.Scene {
             Config.height / 2 + 200,
             "start",
             this,
-            () => this.scene.start("playGame"),
-            0.4
+            () => {
+                this.scene.start("playGame")
+            },0.4
         );
+
+        new Button(
+            Config.width / 2 + 590,
+            Config.height / 2 + 330,
+            "rightArrow",
+            this,
+            () => {
+                mainBGM1.stop();
+                this.bgManager.next();
+            },
+            0.5
+        )
+
+        this.add
+        .bitmapText(Config.width / 2 + 480, 693, "pixelFont", "BGM Change", 30)
+        .setOrigin(0.5);
+
+        new Button(
+            Config.width / 2 +370,
+            Config.height / 2 + 330,
+            "leftArrow",
+            this,
+            () => {
+                mainBGM1.stop();
+                this.bgManager.prev();
+            },
+            0.5
+        )
     }
 }
