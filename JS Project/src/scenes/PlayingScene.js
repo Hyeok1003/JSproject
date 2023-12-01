@@ -448,8 +448,8 @@ export default class PlayingScene extends Phaser.Scene {
         } else if (this.m_cursorKeys.down.isDown || this.keyS.isDown) {
             vector[1] += 1;
         }
-
-        this.m_player.move(vector);
+        if (this.value1 === 3) this.m_player.move(vector, 6);
+        else this.m_player.move(vector);
 
         // static 공격들은 player가 이동하면 그대로 따라오도록 해줍니다.
         this.m_weaponStatic.children.each(weapon => {

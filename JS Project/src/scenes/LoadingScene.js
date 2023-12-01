@@ -351,13 +351,13 @@ export default class LoadingScene extends Phaser.Scene {
         this.anims.create({
             key: "Hidden_player_anim",
             frames: this.anims.generateFrameNumbers("Hidden_player"),
-            frameRate: 6,
+            frameRate: 9,
             repeat : -1
         })
         this.anims.create({
             key: "Hidden_player2_anim",
             frames: this.anims.generateFrameNumbers("Hidden_player2"),
-            frameRate: 4,
+            frameRate: 8,
             repeat : -1
         })
         
