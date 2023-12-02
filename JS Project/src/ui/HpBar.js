@@ -17,7 +17,7 @@ export default class HpBar extends Phaser.GameObjects.Graphics {
         this.BORDER = 2;
 
         // (m_x, m_y)로 HP bar의 맨 왼쪽 위 지점을 지정합니다.
-        if (value_HHH === 20) {
+        if (value_HHH === 3) {
             this.m_x = player.x - this.WIDTH / 2;
             this.m_y = player.y + 60;
         }

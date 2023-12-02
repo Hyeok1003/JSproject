@@ -367,7 +367,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        if(this.value1 === 1 || (this.value1 >= 3 && this.value1 <= 5)) {
+        if(this.value1 === 1 || (this.value1 >= 4 && this.value1 <= 6)) {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
                 if (!this.m_player.m_moving) {
@@ -382,7 +382,7 @@ export default class PlayingScene extends Phaser.Scene {
                 this.m_player.m_moving = false;
             }
         }
-        else if(this.value1 === 2 || (this.value1 >= 6 && this.value1 <= 8)) {
+        else if(this.value1 === 2 || (this.value1 >= 7 && this.value1 <= 9)) {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
                 if (!this.m_player.m_moving) {
@@ -397,7 +397,7 @@ export default class PlayingScene extends Phaser.Scene {
                 this.m_player.m_moving = false;
             }
         }
-        else if (this.value1 >= 9 && this.value1 <= 10) {
+        else if (this.value1 >= 10 && this.value1 <= 11) {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
                 if (!this.m_player.m_moving) {
@@ -413,7 +413,7 @@ export default class PlayingScene extends Phaser.Scene {
                 this.m_player.m_moving = false;
             }
         }
-        else if(this.value1 === 20) {
+        else if(this.value1 === 3) {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
                 if (!this.m_player.m_moving) {
@@ -463,7 +463,8 @@ export default class PlayingScene extends Phaser.Scene {
         } else if (this.m_cursorKeys.down.isDown || this.keyS.isDown) {
             vector[1] += 1;
         }
-        if (this.value1 === 20) this.m_player.move(vector, 6);
+        if (this.value1 === 3) this.m_player.move(vector, 6);
+        else if (this.value1 >= 10 && this.value1 <= 11) this.m_player.move(vector, 4.5);
         else this.m_player.move(vector);
 
         // static 공격들은 player가 이동하면 그대로 따라오도록 해줍니다.

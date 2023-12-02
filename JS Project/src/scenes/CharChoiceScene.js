@@ -15,7 +15,10 @@ export default class CharChoiceScene extends Phaser.Scene {
     }
 
     create() {
-        this.randomValue = Math.floor(Math.random() * 10) + 1;
+        this.randomValue = 1
+        while (this.randomValue === 3) {
+            this.randomValue = Math.floor(Math.random() * 11) + 1;
+        }
 
         this.choice = this.add.image(0, 0, "choiceScene").setScale(1);
         this.choice.setOrigin(0.5, 0.5);
@@ -82,7 +85,7 @@ export default class CharChoiceScene extends Phaser.Scene {
             this,
             () => {
                 this.selectBGM.stop()
-                this.scene.start("playGame", { value: 20 });
+                this.scene.start("playGame", { value: 3 });
             },
             0.8
         );
@@ -147,6 +150,17 @@ export default class CharChoiceScene extends Phaser.Scene {
         })
 
         // 개발용 코드
+        new Button(
+            Config.width / 2 - 590,
+            Config.height / 2 + 330,
+            "leftArrow",
+            this,
+            () => {
+                this.selectBGM.stop()
+                this.scene.start("playGame", { value: 10 });
+            },
+            0.5
+        )
         new Button(
             Config.width / 2 + 590,
             Config.height / 2 + 330,
