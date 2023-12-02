@@ -20,6 +20,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
         else if (value === 3) {
             super(scene, Config.width / 2, Config.height / 2, "Hidden_player");
+            
         }
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -47,13 +48,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.m_canBeAttacked = true;
 
         // scene, player, maxHp
-        this.m_hpBar = new HpBar(scene, this, 100);
+        if(value === 3){
+            this.m_hpBar = new HpBar(scene, this, 500);
+        }
+        else this.m_hpBar = new HpBar(scene, this, 100);
     }
 
-    move(vector) {
+    move(vector, PLAYER_SPEED = 3) {
+        
         // console.log(vector);
-        let PLAYER_SPEED = 3;
-
+        
+        
         this.x += vector[0] * PLAYER_SPEED;
         this.y += vector[1] * PLAYER_SPEED;
 

@@ -7,7 +7,8 @@ import bgImg2 from "../assets/images/background-2.png";
 import bgImg3 from "../assets/images/background-3.png";
 import bgImg4 from "../assets/images/background-4.png";
 import bgImg5 from "../assets/images/background-5.png";
-import beamImg from "../assets/images/beam.png";
+import beamImg from "../assets/images/throwing_stars.png";
+import whanma_fireImg from "../assets/images/whanma_attack.png";
 
 //메인화면 이미지 로드
 import mainbg from "../assets/images/mainbg2-1.png";
@@ -20,6 +21,8 @@ import GameOverBg from "../assets/images/GameOverBg.png";
 //사운드 파일 로드
 import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
 import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
+import StageBGM1_1 from "../assets/sounds/BGM/BGM_light.mp3";
+import StageBGM1_2 from "../assets/sounds/BGM/BGM_cold.mp3";
 import GameOverBGM from "../assets/sounds/BGM/BGM_dark.mp3";
 import selectBGM from "../assets/sounds/BGM/bgm_chunggang.mp3"
 
@@ -47,7 +50,12 @@ import mobImg3 from "../assets/spritesheets/mob3.png";
 import mobImg4 from "../assets/spritesheets/mob4.png";
 import mobImg5 from "../assets/spritesheets/mob5.png";
 import mobImg6 from "../assets/spritesheets/mob6.png";
+import mobImg7 from "../assets/spritesheets/mob7.png";
+import mobImg8 from "../assets/spritesheets/mob8.png";
+import mobImg9 from "../assets/spritesheets/mob9.png";
+import mobImg10 from "../assets/spritesheets/mob10.png";
 import bossImg1 from "../assets/spritesheets/boss1.png";
+import bossImg2 from "../assets/spritesheets/boss2.png";
 import catnipImg from "../assets/spritesheets/catnip.png";
 import clawWhiteImg from "../assets/spritesheets/claw-white.png";
 import clawYellowImg from "../assets/spritesheets/claw-yellow.png";
@@ -57,10 +65,10 @@ import scratchOgg from "../assets/sounds/scratch.ogg";
 import hitMobOgg from "../assets/sounds/hitMob.ogg";
 import growlOgg from "../assets/sounds/growl.ogg";
 import explosionOgg from "../assets/sounds/explosion.ogg";
-import hurtOgg from "../assets/sounds/hurt.ogg";
-import expUpOgg from "../assets/sounds/expUp.ogg";
+import hurtOgg from "../assets/sounds/Cha_guard.ogg";
+import expUpOgg from "../assets/sounds/Cha_lvup.ogg";
 import nextLevelOgg from "../assets/sounds/nextLevel.ogg"
-import gameOverOgg from "../assets/sounds/gameover.ogg";
+import gameOverOgg from "../assets/sounds/Cha_death_1.ogg";
 import gameClearOgg from "../assets/sounds/gameClear.ogg";
 import pauseInOgg from "../assets/sounds/pauseIn.ogg";
 import pauseOutOgg from "../assets/sounds/pauseOut.ogg";
@@ -93,6 +101,7 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.image("background4", bgImg4);
         this.load.image("background5", bgImg5);
         this.load.image("beam", beamImg);
+        this.load.image("whanma_fire", whanma_fireImg)
         this.load.image("choiceScene", choiceScene);
 
         //CharImages
@@ -141,9 +150,29 @@ export default class LoadingScene extends Phaser.Scene {
             frameWidth: 743/9,
             frameHeight: 91,
         });
+        this.load.spritesheet("mob7", mobImg7, {
+            frameWidth: 608/6,
+            frameHeight: 67,
+        });
+        this.load.spritesheet("mob8", mobImg8, {
+            frameWidth: 428/8,
+            frameHeight: 75,
+        });
+        this.load.spritesheet("mob9", mobImg9, {
+            frameWidth: 722/8,
+            frameHeight: 136,
+        });
+        this.load.spritesheet("mob10", mobImg10, {
+            frameWidth: 332/3,
+            frameHeight: 72,
+        });
         this.load.spritesheet("boss1", bossImg1, {
             frameWidth: 255,
             frameHeight: 174,
+        });
+        this.load.spritesheet("boss2", bossImg2, {
+            frameWidth: 915/4,
+            frameHeight: 180,
         });
         this.load.spritesheet("explosion", explosionImg, {
             frameWidth: 32,
@@ -185,6 +214,10 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.audio("MainBGM2", MainBGM2);
         this.load.audio("GameOverBGM", GameOverBGM);
         this.load.audio("selectBGM", selectBGM);
+
+        // 스테이지 브금
+        this.load.audio("BGM_S1", StageBGM1_1);
+        this.load.audio("BGM_S1_2", StageBGM1_2);
 
         // FONT
         this.load.bitmapFont("pixelFont", fontPng, fontXml);
@@ -232,6 +265,30 @@ export default class LoadingScene extends Phaser.Scene {
             repeat: -1,
         });
         this.anims.create({
+            key: "mob7_anim",
+            frames: this.anims.generateFrameNumbers("mob7"),
+            frameRate: 12,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: "mob8_anim",
+            frames: this.anims.generateFrameNumbers("mob8"),
+            frameRate: 8,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: "mob9_anim",
+            frames: this.anims.generateFrameNumbers("mob9"),
+            frameRate: 8,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: "mob10_anim",
+            frames: this.anims.generateFrameNumbers("mob10"),
+            frameRate: 3,
+            repeat: -1,
+        });
+        this.anims.create({
             key: "boss1_anim",
             frames: this.anims.generateFrameNumbers("boss1"),
             frameRate: 4,
@@ -240,6 +297,21 @@ export default class LoadingScene extends Phaser.Scene {
         this.anims.create({
             key: "boss1_idle",
             frames: this.anims.generateFrameNumbers("boss1", {
+                start: 0,
+                end: 0,
+            }),
+            frameRate: 1,
+            repeat: 0,
+        });
+        this.anims.create({
+            key: "boss2_anim",
+            frames: this.anims.generateFrameNumbers("boss2"),
+            frameRate: 4,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: "boss2_idle",
+            frames: this.anims.generateFrameNumbers("boss2", {
                 start: 0,
                 end: 0,
             }),
@@ -281,13 +353,13 @@ export default class LoadingScene extends Phaser.Scene {
         this.anims.create({
             key: "Hidden_player_anim",
             frames: this.anims.generateFrameNumbers("Hidden_player"),
-            frameRate: 6,
+            frameRate: 9,
             repeat : -1
         })
         this.anims.create({
             key: "Hidden_player2_anim",
             frames: this.anims.generateFrameNumbers("Hidden_player2"),
-            frameRate: 4,
+            frameRate: 8,
             repeat : -1
         })
         
