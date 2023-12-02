@@ -60,7 +60,7 @@ export default class GameOverScene extends Phaser.Scene {
             this,
             () => {
                 GameOverBGM.stop()
-                this.scene.start("mainScene", { Hidden_value : 1 });
+                this.scene.start("mainScene");
             },
             0.77
         );
