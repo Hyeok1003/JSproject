@@ -367,7 +367,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        if(this.value1 === 1) {
+        if(this.value1 === 1 || (this.value1 >= 3 && this.value1 <= 5)) {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
                 if (!this.m_player.m_moving) {
@@ -382,7 +382,7 @@ export default class PlayingScene extends Phaser.Scene {
                 this.m_player.m_moving = false;
             }
         }
-        else if(this.value1 === 2) {
+        else if(this.value1 === 2 || (this.value1 >= 6 && this.value1 <= 8)) {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
                 if (!this.m_player.m_moving) {
@@ -397,7 +397,22 @@ export default class PlayingScene extends Phaser.Scene {
                 this.m_player.m_moving = false;
             }
         }
-
+        else if (this.value1 >= 9 && this.value1 <= 10) {
+            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+                if (!this.m_player.m_moving) {
+                    this.m_player.play("Female_H1_anim");
+                    // this.m_player.setScale(0.8);
+                }
+                this.m_player.m_moving = true;
+            } 
+            else {
+                if (this.m_player.m_moving) {
+                    this.m_player.play("Female_H_anim");
+                }
+                this.m_player.m_moving = false;
+            }
+        }
         else if(this.value1 === 20) {
             if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
                 || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {

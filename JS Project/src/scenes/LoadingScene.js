@@ -41,6 +41,8 @@ import Hidden from "../assets/images/Hidden_player.png"
 import explosionImg from "../assets/spritesheets/explosion.png";
 import playerImg from "../assets/spritesheets/player.png";
 import FemaleChar from "../assets/spritesheets/Female_player.png";
+import Female_H from "../assets/spritesheets/Female_H.png";
+import Female_H1 from "../assets/spritesheets/Female_H1.png";
 import HiddenChar from "../assets/spritesheets/Hidden.png";
 import HiddenChar2 from "../assets/spritesheets/Hidden2.png";
 import expUpImg from "../assets/spritesheets/expUp.png";
@@ -117,6 +119,14 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.spritesheet("Female_player", FemaleChar, {
             frameWidth: 492/7,
             frameHeight: 87,
+        });
+        this.load.spritesheet("Female_H", Female_H, {
+            frameWidth: 390/6,
+            frameHeight: 94,
+        });
+        this.load.spritesheet("Female_H1", Female_H1, {
+            frameWidth: 419/6,
+            frameHeight: 92,
         });
         this.load.spritesheet("Hidden_player", HiddenChar, {
             frameWidth: 592/6,
@@ -350,6 +360,20 @@ export default class LoadingScene extends Phaser.Scene {
             frameRate: 1,
             repeat: 0,
         })
+
+        this.anims.create({
+            key: "Female_H_anim",
+            frames: this.anims.generateFrameNumbers("Female_H"),
+            frameRate: 8,
+            repeat: -1,
+        })
+        this.anims.create({
+            key: "Female_H1_anim",
+            frames: this.anims.generateFrameNumbers("Female_H1"),
+            frameRate: 8,
+            repeat: -1,
+        })
+
         this.anims.create({
             key: "Hidden_player_anim",
             frames: this.anims.generateFrameNumbers("Hidden_player"),

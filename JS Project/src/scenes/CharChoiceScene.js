@@ -15,7 +15,7 @@ export default class CharChoiceScene extends Phaser.Scene {
     }
 
     create() {
-        this.randomValue = Math.floor(Math.random() * 2) + 1;
+        this.randomValue = Math.floor(Math.random() * 10) + 1;
 
         this.choice = this.add.image(0, 0, "choiceScene").setScale(1);
         this.choice.setOrigin(0.5, 0.5);
