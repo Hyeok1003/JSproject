@@ -18,7 +18,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         else if (value === 2) {
             super(scene, Config.width / 2, Config.height / 2, "Female_player");
         }
-        else if (value === 3) {
+        else if (value === 20) {
             super(scene, Config.width / 2, Config.height / 2, "Hidden_player");
             
         }
@@ -48,7 +48,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.m_canBeAttacked = true;
 
         // scene, player, maxHp
-        if(value === 3){
+        if(value === 20){
             this.m_hpBar = new HpBar(scene, this, 500);
         }
         else this.m_hpBar = new HpBar(scene, this, 100);

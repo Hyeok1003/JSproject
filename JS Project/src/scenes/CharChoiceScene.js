@@ -15,6 +15,8 @@ export default class CharChoiceScene extends Phaser.Scene {
     }
 
     create() {
+        this.randomValue = Math.floor(Math.random() * 2) + 1;
+
         this.choice = this.add.image(0, 0, "choiceScene").setScale(1);
         this.choice.setOrigin(0.5, 0.5);
 
@@ -80,7 +82,7 @@ export default class CharChoiceScene extends Phaser.Scene {
             this,
             () => {
                 this.selectBGM.stop()
-                this.scene.start("playGame", { value: 3 });
+                this.scene.start("playGame", { value: 20 });
             },
             0.8
         );
@@ -132,6 +134,16 @@ export default class CharChoiceScene extends Phaser.Scene {
             if(this.value_HH === 1) {
                 this.Hidden_button.setVisible(true);
             }
+        })
+
+        this.random = this.add
+            .bitmapText(Config.width / 2, Config.height / 2 + 300, "pixelFont", "Random Select", 60)
+            .setOrigin(0.5)
+            .setInteractive();
+        
+        this.random.on('pointerdown', () => {
+            this.selectBGM.stop()
+            this.scene.start("playGame", { value: this.randomValue });
         })
 
         // 개발용 코드
