@@ -56,7 +56,7 @@ export default class GameClearScene extends Phaser.Scene {
             Config.height / 2 + 180,
             "gameover",
             this,
-            () => this.scene.start("mainScene")
+            () => this.scene.start("mainScene", { Hidden_value : 1 })
         );
     }
 }

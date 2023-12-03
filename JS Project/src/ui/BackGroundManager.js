@@ -6,6 +6,7 @@ export default class BackgroundManager {
         this.backgrounds = [];
         this.Index = 0;
         this.bgm = [];
+
         this.selectScene = null;
         this.selectMusic = null;
     }

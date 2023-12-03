@@ -16,21 +16,15 @@ export default class MainScene extends Phaser.Scene {
 
     create() {
         // 배경 이미지 로드
-        const main_img = this.add.image(0, 0, "mainback").setScale(0.77);
-        main_img.setOrigin(0.5, 0.5);
+        this.main_img = this.add.image(0, 0, "mainback").setScale(0.77);
+        this.main_img.setOrigin(0.5, 0.5);
 
         // 노래 추가
-        const mainBGM1 = this.sound.add("MainBGM1");
-        mainBGM1.play();
-        mainBGM1.on(Phaser.Sound.Events.COMPLETE, () => {
-            mainBGM1.play();
+        this.mainBGM1 = this.sound.add("MainBGM1");
+        this.mainBGM1.play();
+        this.mainBGM1.on(Phaser.Sound.Events.COMPLETE, () => {
+            this.mainBGM1.play();
         });
-
-        // 배경색을 채워줍니다.
-        // this.add.graphics()
-        //     .fillStyle(0xbbdefb)
-        //     .fillRect(0, 0, Config.width, Config.height)
-        //     .setScrollFactor(0);
 
         this.bgManager = new BackGroundManager(this);
 
@@ -56,10 +50,10 @@ export default class MainScene extends Phaser.Scene {
             "start",
             this,
             () => {
-                mainBGM1.stop();
+                this.mainBGM1.stop();
                 this.bgManager.removeAll();
                 if(this.value_H === 1) {
-                    this.scene.start("charChoice", { Hidden_value2 : 1 })
+                    this.scene.start("charChoice", { Hidden_value2: 1 })
                 }
                 else {
                 this.scene.start("charChoice", { Hidden_value2 : 0 })
@@ -74,7 +68,7 @@ export default class MainScene extends Phaser.Scene {
             "rightArrow",
             this,
             () => {
-                mainBGM1.stop();
+                this.mainBGM1.stop();
                 this.bgManager.next();
             },
             0.5
@@ -90,7 +84,7 @@ export default class MainScene extends Phaser.Scene {
             "leftArrow",
             this,
             () => {
-                mainBGM1.stop();
+                this.mainBGM1.stop();
                 this.bgManager.prev();
             },
             0.5
