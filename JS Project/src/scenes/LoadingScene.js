@@ -23,8 +23,11 @@ import MainBGM1 from "../assets/sounds/GhostOldBGM.mp3";
 import MainBGM2 from "../assets/sounds/BGM_chungumgwan.mp3";
 import StageBGM1_1 from "../assets/sounds/BGM/BGM_light.mp3";
 import StageBGM1_2 from "../assets/sounds/BGM/BGM_cold.mp3";
-import GameOverBGM from "../assets/sounds/BGM/BGM_dark.mp3";
-import selectBGM from "../assets/sounds/BGM/bgm_chunggang.mp3"
+import selectBGM from "../assets/sounds/BGM/bgm_chunggang.mp3";
+import GameOverBGM from "../assets/sounds/BGM/whisperofmonsterwaitingroom.mp3";
+import StageBGM2_1 from "../assets/sounds/BGM/BGM_dark2.mp3";
+import StageBGM2_2 from "../assets/sounds/BGM/BGM_dark.mp3";
+import LastStageBGM from "../assets/sounds/BGM/BGM_tower1.mp3";
 
 //버튼 이미지 로드
 import startImg from "../assets/images/gamestart.png";
@@ -45,7 +48,7 @@ import Female_H from "../assets/spritesheets/Female_H.png";
 import Female_H1 from "../assets/spritesheets/Female_H1.png";
 import HiddenChar from "../assets/spritesheets/Hidden.png";
 import HiddenChar2 from "../assets/spritesheets/Hidden2.png";
-import expUpImg from "../assets/spritesheets/expUp.png";
+import expUpImg from "../assets/spritesheets/exp.png";
 import mobImg1 from "../assets/spritesheets/mob1.png";
 import mobImg2 from "../assets/spritesheets/mob2.png";
 import mobImg3 from "../assets/spritesheets/mob3.png";
@@ -61,6 +64,7 @@ import bossImg2 from "../assets/spritesheets/boss2.png";
 import catnipImg from "../assets/spritesheets/catnip.png";
 import clawWhiteImg from "../assets/spritesheets/claw-white.png";
 import clawYellowImg from "../assets/spritesheets/claw-yellow.png";
+import Fire_floorImg from "../assets/spritesheets/fire_floor.png";
 
 import beamOgg from "../assets/sounds/beam.ogg";
 import scratchOgg from "../assets/sounds/scratch.ogg";
@@ -200,9 +204,13 @@ export default class LoadingScene extends Phaser.Scene {
             frameWidth: 64,
             frameHeight: 64,
         });
+        this.load.spritesheet("fire_floor", Fire_floorImg, {
+            frameWidth: 211/4,
+            frameHeight: 57,
+        });
         this.load.spritesheet("exp-up", expUpImg, {
-            frameWidth: 16,
-            frameHeight: 16,
+            frameWidth: 38,
+            frameHeight: 76,
         });
 
         // AUDIOS
@@ -228,6 +236,9 @@ export default class LoadingScene extends Phaser.Scene {
         // 스테이지 브금
         this.load.audio("BGM_S1", StageBGM1_1);
         this.load.audio("BGM_S1_2", StageBGM1_2);
+        this.load.audio("BGM_S2", StageBGM2_1);
+        this.load.audio("BGM_S2_2", StageBGM2_2);
+        this.load.audio("BGM_LS", LastStageBGM);
 
         // FONT
         this.load.bitmapFont("pixelFont", fontPng, fontXml);
@@ -417,10 +428,16 @@ export default class LoadingScene extends Phaser.Scene {
             frameRate: 20,
             repeat: -1,
         });
+        this.anims.create({
+            key: "fire_floor_anim",
+            frames: this.anims.generateFrameNumbers("fire_floor"),
+            frameRate: 20,
+            repeat: -1,
+        });
 
         // EXP UP ITEMS
         this.anims.create({
-            key: "red",
+            key: "exp",
             frames: this.anims.generateFrameNumbers("exp-up", {
                 start: 0,
                 end: 0,
@@ -428,32 +445,6 @@ export default class LoadingScene extends Phaser.Scene {
             frameRate: 20,
             repeat: 0,
         });
-        this.anims.create({
-            key: "blue",
-            frames: this.anims.generateFrameNumbers("exp-up", {
-                start: 1,
-                end: 1,
-            }),
-            frameRate: 20,
-            repeat: 0,
-        });
-        this.anims.create({
-            key: "yellow",
-            frames: this.anims.generateFrameNumbers("exp-up", {
-                start: 2,
-                end: 2,
-            }),
-            frameRate: 20,
-            repeat: 0,
-        });
-        this.anims.create({
-            key: "green",
-            frames: this.anims.generateFrameNumbers("exp-up", {
-                start: 3,
-                end: 3,
-            }),
-            frameRate: 20,
-            repeat: 0,
-        });
+        
     }
 }
