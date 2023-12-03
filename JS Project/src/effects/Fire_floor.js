@@ -1,13 +1,11 @@
 import Phaser from "phaser";
 import Player from "../characters/Player"
 
-export default class Catnip extends Phaser.Physics.Arcade.Sprite {
+export default class Fire_floor extends Phaser.Physics.Arcade.Sprite {
     // scene의 startingPosition 위치에 데미지 damage와 크기 scale의 Catnip을 생성합니다.
     constructor(scene, startingPosition, damage, scale) {
-        super(scene, startingPosition[0], startingPosition[1], "catnip");
-        this.scene = scene; // Scene 객체를 멤버 변수로 저장합니다.
+        super(scene, startingPosition[0], startingPosition[1], "fire_floor");
 
-        this.value = this.scene.scene.settings.data.value;
         // 화면 및 물리엔진에 추가합니다.
         scene.add.existing(this);
         scene.physics.world.enableBody(this);
@@ -18,23 +16,17 @@ export default class Catnip extends Phaser.Physics.Arcade.Sprite {
         this.m_damage = damage;
         // 크기, 투명도, depth를 설정해줍니다.
         this.scale = scale;
-        this.alpha = 0.5;
+        this.alpha = 1;
         this.setDepth(5);
         // catnip은 동그랗게 생겼으므로 물리적 영역을 원으로 설정해줍니다.
         this.setCircle(30);
         // 애니메이션을 재생합니다.
-        this.play("catnip_anim");
+        this.play("fire_floor_anim");
     }
 
     // 플레이어가 움직이면 Catnip도 따라 움직여야 하므로 move 메서드를 만들어주었습니다.
     move(vector) {
-        if (this.value >= 10 && this.value <= 11) {
-            this.x += vector[0] * 4.5;
-            this.y += vector[1] * 4.5;
-        }
-        else {
-            this.x += vector[0] * 3;
-            this.y += vector[1] * 3;
-        }
+        this.x += vector[0] * 6;
+        this.y += vector[1] * 6;
     }
 }

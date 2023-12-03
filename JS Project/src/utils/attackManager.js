@@ -1,6 +1,7 @@
 import Beam from "../effects/Beam";
 import Claw from "../effects/Claw";
 import Catnip from "../effects/Catnip";
+import Fire_floor from "../effects/Fire_floor";
 
 export function addAttackEvent(scene, attackType, damage, scale, repeatGap = 0) {
     switch (attackType) {
@@ -17,7 +18,11 @@ export function addAttackEvent(scene, attackType, damage, scale, repeatGap = 0) 
             break;
         case "catnip":
             const catnip = new Catnip(scene, [scene.m_player.x, scene.m_player.y + 20], damage, scale);
-            scene.m_attackEvents[attackType] = { object: catnip, damage: damage };
+            scene.m_attackEvents[attackType] = { object: catnip, damage: damage, scale: scale };
+            break;
+        case "fire_floor":
+            const fire_floor = new Fire_floor(scene, [scene.m_player.x, scene.m_player.y + 20], damage, scale);
+            scene.m_attackEvents[attackType] = { object: fire_floor, damage: damage, scale: scale };
             break;
     }
 }
@@ -58,7 +63,7 @@ export function removeAttack(scene, attackType) {
     if (!scene.m_attackEvents[attackType]) return;
 
     // catnip의 경우 object를 제거합니다.
-    if (attackType === "catnip") {
+    if (attackType === "catnip" || attackType === "fire_floor") {
         scene.m_attackEvents[attackType].object.destroy();
         return;
     }
@@ -69,10 +74,18 @@ export function removeAttack(scene, attackType) {
 
 // scene에 있는 attackType 공격의 damage를 재설정해주는 함수입니다.
 export function setAttackDamage(scene, attackType, newDamage) {
-    const scale = scene.m_attackEvents[attackType].scale;
-    const repeatGap = scene.m_attackEvents[attackType].repeatGap;
-    removeAttack(scene, attackType);
-    addAttackEvent(scene, attackType, newDamage, scale, repeatGap);
+    if (attackType === 'catnip' || attackType === 'fire_floor') {
+        const scale = scene.m_attackEvents[attackType].scale;
+        removeAttack(scene, attackType);
+        addAttackEvent(scene, attackType, newDamage, scale);
+        return
+    }
+    else{
+        const scale = scene.m_attackEvents[attackType].scale;
+        const repeatGap = scene.m_attackEvents[attackType].repeatGap;
+        removeAttack(scene, attackType);
+        addAttackEvent(scene, attackType, newDamage, scale, repeatGap);
+    }
 }
 
 // scene에 있는 attackType 공격의 scale을 재설정해주는 함수입니다.
@@ -86,8 +99,8 @@ export function setAttackScale(scene, attackType, newScale) {
 // scene에 있는 attackType 공격의 repeatGap을 재설정해주는 함수입니다.
 export function setAttackRepeatGap(scene, attackType, newRepeatGap) {
     // catnip의 경우 repeatGap이 없으므로 예외처리해 줍니다.
-    if (attackType === 'catnip') {
-        console.error("Cannot set catnip's repeat gap");
+    if (attackType === 'catnip' || attackType === 'fire_floor') {
+        console.error("Cannot set repeat gap");
         return;
     }
 

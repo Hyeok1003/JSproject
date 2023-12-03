@@ -20,12 +20,12 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.m_isDead = false;
 
         if (texture === "mob1") {
-            this.setBodySize(32,46);
+            this.setBodySize(16,32);
             this.setOffset(0, 0);
             this.scale = 1;
         } 
         else if (texture === "mob2") {
-            this.setBodySize(44, 72);
+            this.setBodySize(24, 48);
             this.scale = 1;
         } 
         else if (texture === "mob3") {
@@ -35,20 +35,46 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         else if (texture === "mob4") {
             this.setBodySize(24, 48);
             this.scale = 1
+            this.m_speed = 70
         } 
         else if (texture === "boss1") {
             this.scale = 1.3;
             this.m_speed = 60;
-            this.setBodySize(100, 80);
+            this.setBodySize(132, 120);
         }
         else if (texture === "mob5") {
-            this.setBodySize(164, 126);
+            this.setBodySize(32, 64);
             this.scale = 1
+            this.m_speed = 30
         } 
         else if (texture === "mob6") {
-            this.setBodySize(102, 99);
+            this.setBodySize(28, 48);
             this.scale = 1
-        } 
+        }
+        else if (texture === "mob7") {
+            this.setBodySize(49, 33);
+            this.scale = 1
+            this.m_speed = 80;
+        }
+        else if (texture === "mob8") {
+            this.setBodySize(30, 38);
+            this.scale = 1
+        }
+        else if (texture === "boss2") {
+            this.scale = 1.3;
+            this.m_speed = 60;
+            this.setBodySize(150, 120);
+        }
+        else if (texture === "mob9") {
+            this.setBodySize(54, 72);
+            this.scale = 1
+            this.m_speed = 100;
+        }
+        else if (texture === "mob10") {
+            this.setBodySize(84, 64);
+            this.scale = 1.5
+            this.m_speed = 100;
+        }
 
         this.m_events = [];
         this.m_events.push(
@@ -117,7 +143,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
     // 공격받은 mob을 투명도를 1초간 조절함으로써 공격받은 것을 표시합니다.
     displayHit() {
         // 보스몹이면 투명도를 조절하지 않습니다.
-        if (this.texture.key === "boss1") return;
+        if (this.texture.key === "boss1" || this.texture.key === "boss2") return;
         // 몹의 투명도를 0.5로 변경하고,
         // 0.5초 후 1로 변경합니다.
         this.alpha = 0.5;
@@ -160,7 +186,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.scene.time.removeEvent(this.m_events);
 
         // 보스몹이 죽었을 때
-        if (this.texture.key === "last_boss") {
+        if (this.texture.key === "boss2") {
             // 공격을 제거합니다. (attackManager.js 참고)
             removeAttack(this.scene, "catnip");
             removeAttack(this.scene, "beam");
@@ -168,13 +194,13 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
             // 플레이어가 보스몹과 접촉해도 HP가 깎이지 않도록 만듭니다.
             this.disableBody(true, false);
             // 보스몹이 움직이던 애니메이션을 멉춥니다.
-            this.play("last_boss_idle");
+            this.play("boss2_idle");
             // 모든 몹의 움직임을 멈춥니다.
             this.scene.m_mobs.children.each((mob) => {
                 mob.m_speed = 0;
             });
 
-            // 보스몹이 서서히 투멍해지도록 합니다.
+            // 보스몹이 서서히 투명해지도록 합니다.
             this.scene.time.addEvent({
                 delay: 30,
                 callback: () => {
@@ -182,7 +208,8 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
                 },
                 repeat: 100,
             });
-            this.destroy();
+            
+ 
             // 보스몹이 투명해진 후, GameClearScene으로 화면을 전환합니다.
             this.scene.time.addEvent({
                 delay: 4000,
@@ -192,7 +219,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
                 loop: false,
             });
         }
-        else if(this.texture.key === "last_boss"){
+        else if(this.texture.key === "boss1"){
             this.disableBody(true, false);
             // 보스몹이 서서히 투멍해지도록 합니다.
             this.scene.time.addEvent({
