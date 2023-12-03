@@ -30,6 +30,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.m_growlSound = this.sound.add("audio_growl");
         this.m_explosionSound = this.sound.add("audio_explosion");
         this.m_expUpSound = this.sound.add("audio_expUp");
+        this.m_expeatSound = this.sound.add("audio_expeat");
         this.m_hurtSound = this.sound.add("audio_hurt");
         this.m_nextLevelSound = this.sound.add("audio_nextLevel");
         this.m_gameOverSound = this.sound.add("audio_gameOver");
@@ -163,7 +164,7 @@ export default class PlayingScene extends Phaser.Scene {
     pickExpUp(player, expUp) {
         expUp.disableBody(true, true);
         expUp.destroy();
-        
+        this.m_expeatSound.play();
         // console.log(`경험치 ${expUp.m_exp} 상승!`);
         this.m_expBar.increase(expUp.m_exp);
         if (this.m_expBar.m_currentExp >= this.m_expBar.m_maxExp) {
