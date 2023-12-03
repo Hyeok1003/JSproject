@@ -28,7 +28,7 @@ export default class Catnip extends Phaser.Physics.Arcade.Sprite {
 
     // 플레이어가 움직이면 Catnip도 따라 움직여야 하므로 move 메서드를 만들어주었습니다.
     move(vector) {
-        if (this.value >= 10 && this.value <= 11) {
+        if (this.value === 4) {
             this.x += vector[0] * 4.5;
             this.y += vector[1] * 4.5;
         }

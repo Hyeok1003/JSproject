@@ -408,9 +408,9 @@ export default class PlayingScene extends Phaser.Scene {
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        if(this.value1 === 1 || (this.value1 >= 4 && this.value1 <= 6)) this.index = 0
-        if(this.value1 === 2 || (this.value1 >= 7 && this.value1 <= 9)) this.index = 1
-        if(this.value1 >= 10 && this.value1 <= 11) this.index = 2
+        if(this.value1 === 1) this.index = 0
+        if(this.value1 === 2) this.index = 1
+        if(this.value1 === 4) this.index = 2
         if(this.value1 === 3) this.index = 3
 
         if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
@@ -460,7 +460,7 @@ export default class PlayingScene extends Phaser.Scene {
             vector[1] += 1;
         }
         if (this.value1 === 3) this.m_player.move(vector, 6);
-        else if (this.value1 >= 10 && this.value1 <= 11) this.m_player.move(vector, 4.5);
+        else if (this.value1 === 4) this.m_player.move(vector, 4.5);
         else this.m_player.move(vector);
 
         // static 공격들은 player가 이동하면 그대로 따라오도록 해줍니다.

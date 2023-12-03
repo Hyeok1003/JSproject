@@ -15,9 +15,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // 화면의 가운데에 player를 추가해줍니다.
         // scene.add.existing : scene에 오브젝트를 추가
         // scene.physics.add.existing : scene의 물리엔진에 오브젝트를 추가
-        if (value === 1 || (value >= 4 && value <= 6)) this.index = 0;
-        if (value === 2 || (value >= 7 && value <= 9)) this.index = 1;
-        if (value >= 10 && value <= 11) this.index = 2;
+        if (value === 1) this.index = 0;
+        if (value === 2) this.index = 1;
+        if (value === 4) this.index = 2;
         if (value === 3) this.index = 3;
         super(scene, Config.width / 2, Config.height / 2, this.keybox[this.index]);
         scene.add.existing(this);
@@ -49,7 +49,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(value === 3){
             this.m_hpBar = new HpBar(scene, this, 500);
         }
-        else if(value >= 10 && value <= 11) this.m_hpBar = new HpBar(scene, this, 300);
+        else if(value === 4) this.m_hpBar = new HpBar(scene, this, 300);
         else this.m_hpBar = new HpBar(scene, this, 100);
     }
 
