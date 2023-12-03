@@ -377,13 +377,13 @@ export default class LoadingScene extends Phaser.Scene {
         this.anims.create({
             key: "Female_H_anim",
             frames: this.anims.generateFrameNumbers("Female_H"),
-            frameRate: 8,
+            frameRate: 6,
             repeat: -1,
         })
         this.anims.create({
             key: "Female_H1_anim",
             frames: this.anims.generateFrameNumbers("Female_H1"),
-            frameRate: 8,
+            frameRate: 6,
             repeat: -1,
         })
 
