@@ -5,43 +5,36 @@ import Phaser from "phaser";
 const ITEM_PROPERTY = {
     'mob1': {
         exp: 10,
-        color: 'red'
     },
     'mob2': {
         exp: 15,
-        color: 'blue'
     },
     'mob3': {
         exp: 20,
-        color: 'yellow'
     },
     'mob4': {
         exp: 25,
-        color: 'green'
     },
     'mob5': {
         exp: 30,
-        color: 'green'
     },
     'mob6': {
         exp: 35,
-        color: 'green'
     },
     'mob7': {
         exp: 25,
-        color: 'red'
     },
     'mob8': {
         exp: 35,
-        color: 'red'
     },
     'mob9': {
         exp: 80,
-        color: 'green'
     },
     'mob10': {
         exp: 80,
-        color: 'red'
+    },
+    'boss1': {
+        exp: 500,
     },
 };
 
@@ -58,10 +51,10 @@ export default class ExpUp extends Phaser.Physics.Arcade.Sprite {
         // 몹 종류에 따라 경험치 상승량, 아이템 이미지를 다르게 설정합니다.
         // mob.texture.key는 해당 몹 이미지를 LoadingScene에서 load했던 key와 동일합니다.
         this.m_exp = ITEM_PROPERTY[mob.texture.key].exp;
-        this.play(ITEM_PROPERTY[mob.texture.key].color);
+        this.play('exp');
 
         // 크기, depth, 물리 영역을 지정해줍니다.
-        this.scale = 1.5;
+        this.scale = 0.8;
         this.setDepth(7);
         this.setBodySize(20, 20);
     }
