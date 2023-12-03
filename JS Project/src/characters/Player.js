@@ -85,6 +85,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             loseGame(this.scene);
         }
     }
+    lvup(){
+        this.m_hpBar.increase(15);
+    }
 
     // 공격받은 후 1초 쿨타임을 갖게 하는 함수입니다.
     // 공격받을 수 있는지 여부와 투명도를 1초동안 조절합니다.

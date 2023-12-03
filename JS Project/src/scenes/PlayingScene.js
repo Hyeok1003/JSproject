@@ -164,6 +164,7 @@ export default class PlayingScene extends Phaser.Scene {
         this.m_expBar.increase(expUp.m_exp);
         if (this.m_expBar.m_currentExp >= this.m_expBar.m_maxExp) {
             this.m_expUpSound.play();
+            this.m_player.lvup();
             // maxExp를 초과하면 레벨업을 해주던 기존의 코드를 지우고
             // afterLevelUp 메소드를 만들어 거기에 옮겨줍니다.
             // 추후 레벨에 따른 몹, 무기 추가를 afterLevelUp에서 실행해 줄 것입니다.
@@ -382,18 +383,18 @@ export default class PlayingScene extends Phaser.Scene {
                 removeOldestMobEvent(this);
                 addMobEvent(this, 200, "mob9", "mob9_anim", 1400, 0.6);
                 addMobEvent(this, 200, "mob10", "mob10_anim", 1400, 0.6);
-                if (this.value1 != 3) setAttackDamage(this, "beam", 150);
+                if (this.value1 != 3) setAttackDamage(this, "beam", 120);
                 break;
             
             case 33:
-                if (this.value1 != 3) setAttackDamage(this, "catnip", 110);
+                if (this.value1 != 3) setAttackDamage(this, "catnip", 150);
                 if (this.value1 != 3) setAttackDamage(this, "beam", 200);
-            
+                breakl
             case 34:
-                addMob(this, "boss2", "boss2_anim", 20000, 0);
+                addMob(this, "boss2", "boss2_anim", 50000, 0);
                 break;
             case 35:
-                if (this.value1 != 3) setAttackDamage(this, "catnip", 120);
+                if (this.value1 != 3) setAttackDamage(this, "catnip", 200);
                 break;
         }
     }
