@@ -15,11 +15,10 @@ export default class CharChoiceScene extends Phaser.Scene {
     }
 
     create() {
-        this.randomValue = Math.floor(Math.random() * 11) + 1;
-        while (this.randomValue === 3) {
-            this.randomValue = Math.floor(Math.random() * 11) + 1;
-        }
-
+        this.r = Math.random();
+        if (this.r < 0.8) this.randomValue = Math.floor(Math.random() * 2) + 1;
+        else this.randomValue = 4;
+        
         this.choice = this.add.image(0, 0, "choiceScene").setScale(1);
         this.choice.setOrigin(0.5, 0.5);
 
@@ -157,7 +156,7 @@ export default class CharChoiceScene extends Phaser.Scene {
             this,
             () => {
                 this.selectBGM.stop()
-                this.scene.start("playGame", { value: 10 });
+                this.scene.start("playGame", { value: 4 });
             },
             0.5
         )
