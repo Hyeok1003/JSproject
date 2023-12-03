@@ -145,10 +145,10 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         // 보스몹이면 투명도를 조절하지 않습니다.
         if (this.texture.key === "boss1" || this.texture.key === "boss2") return;
         // 몹의 투명도를 0.5로 변경하고,
-        // 0.5초 후 1로 변경합니다.
+        // 0.3초 후 1로 변경합니다.
         this.alpha = 0.5;
         this.scene.time.addEvent({
-            delay: 500,
+            delay: 300,
             callback: () => {
                 this.alpha = 1;
             },

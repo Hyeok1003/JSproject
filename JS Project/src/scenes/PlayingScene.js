@@ -372,7 +372,7 @@ export default class PlayingScene extends Phaser.Scene {
                 break;
 
             case 31:
-                if (this.value1 != 3) setAttackDamage(this, "catnip", 80);
+                if (this.value1 != 3) setAttackDamage(this, "catnip", 100);
                 else setAttackDamage(this, "catnip", 200);
                 if (this.value1 != 3) setAttackDamage(this, "claw", 200);
                 break;
@@ -386,14 +386,14 @@ export default class PlayingScene extends Phaser.Scene {
                 break;
             
             case 33:
-                if (this.value1 != 3) setAttackDamage(this, "catnip", 90);
-                if (this.value1 != 3) setAttackDamage(this, "beam", 120);
+                if (this.value1 != 3) setAttackDamage(this, "catnip", 110);
+                if (this.value1 != 3) setAttackDamage(this, "beam", 200);
             
             case 34:
                 addMob(this, "boss2", "boss2_anim", 20000, 0);
                 break;
             case 35:
-                if (this.value1 != 3) setAttackDamage(this, "catnip", 100);
+                if (this.value1 != 3) setAttackDamage(this, "catnip", 120);
                 break;
         }
     }
