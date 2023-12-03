@@ -78,6 +78,7 @@ import gameOverOgg from "../assets/sounds/Cha_death_1.ogg";
 import gameClearOgg from "../assets/sounds/gameClear.ogg";
 import pauseInOgg from "../assets/sounds/pauseIn.ogg";
 import pauseOutOgg from "../assets/sounds/pauseOut.ogg";
+import exp_eatOgg from "../assets/sounds/Cha_dssuction.ogg";
 
 export default class LoadingScene extends Phaser.Scene {
     constructor() {
@@ -220,6 +221,7 @@ export default class LoadingScene extends Phaser.Scene {
         this.load.audio("audio_growl", growlOgg);
         this.load.audio("audio_explosion", explosionOgg);
         this.load.audio("audio_expUp", expUpOgg);
+        this.load.audio("audio_expeat", exp_eatOgg);
         this.load.audio("audio_hurt", hurtOgg);
         this.load.audio("audio_nextLevel", nextLevelOgg);
         this.load.audio("audio_gameOver", gameOverOgg);
