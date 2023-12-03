@@ -15,7 +15,7 @@ export default class CharChoiceScene extends Phaser.Scene {
     }
 
     create() {
-        this.randomValue = 1
+        this.randomValue = Math.floor(Math.random() * 11) + 1;
         while (this.randomValue === 3) {
             this.randomValue = Math.floor(Math.random() * 11) + 1;
         }

@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import Config from "../Config";
 import HpBar from "../ui/HpBar";
 import { loseGame } from "../utils/sceneManager";
+// import { charInit } from "../utils/charManager";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
@@ -9,22 +10,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene = scene; // Scene 객체를 멤버 변수로 저장합니다.
 
         const value = this.scene.scene.settings.data.value;
+        this.keybox = ["player", "Female_player", "Female_H", "Hidden_player"];
+        // this.index = 0
         // 화면의 가운데에 player를 추가해줍니다.
         // scene.add.existing : scene에 오브젝트를 추가
         // scene.physics.add.existing : scene의 물리엔진에 오브젝트를 추가
-        if (value === 1 || (value >= 4 && value <= 6)) {
-            super(scene, Config.width / 2, Config.height / 2, "player");
-        }
-        else if (value === 2 || (value >= 7 && value <= 9)) {
-            super(scene, Config.width / 2, Config.height / 2, "Female_player");
-        }
-        else if (value >= 10 && value <= 11) {
-            super(scene, Config.width / 2, Config.height / 2, "Female_H");
-        }
-        else if (value === 3) {
-            super(scene, Config.width / 2, Config.height / 2, "Hidden_player");
-            
-        }
+        if (value === 1 || (value >= 4 && value <= 6)) this.index = 0;
+        if (value === 2 || (value >= 7 && value <= 9)) this.index = 1;
+        if (value >= 10 && value <= 11) this.index = 2;
+        if (value === 3) this.index = 3;
+        super(scene, Config.width / 2, Config.height / 2, this.keybox[this.index]);
         scene.add.existing(this);
         scene.physics.add.existing(this);
 

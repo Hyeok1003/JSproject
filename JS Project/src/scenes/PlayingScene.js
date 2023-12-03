@@ -54,11 +54,6 @@ export default class PlayingScene extends Phaser.Scene {
         this.m_stage1.play({loop:true});
 
         this.m_cursorKeys = this.input.keyboard.createCursorKeys();
-        // 방향키 중복코드
-        // this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        // this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-        // this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-        // this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         // Mob
         this.m_mobs = this.physics.add.group();
@@ -362,74 +357,31 @@ export default class PlayingScene extends Phaser.Scene {
 
 
     movePlayerManager() {
+        this.charKey_anim = ["player_anim", "FemalePlayer_anim", "Female_H1_anim", "Hidden_player2_anim"];
+        this.charKey_idle = ["player_idle", "FemalePlayer_idle", "Female_H_anim", "Hidden_player_anim"];
         this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        if(this.value1 === 1 || (this.value1 >= 4 && this.value1 <= 6)) {
-            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
-                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
-                if (!this.m_player.m_moving) {
-                    this.m_player.play("player_anim");
-                }
-                this.m_player.m_moving = true;
-            } 
-            else {
-                if (this.m_player.m_moving) {
-                    this.m_player.play("player_idle");
-                }
-                this.m_player.m_moving = false;
+        if(this.value1 === 1 || (this.value1 >= 4 && this.value1 <= 6)) this.index = 0
+        if(this.value1 === 2 || (this.value1 >= 7 && this.value1 <= 9)) this.index = 1
+        if(this.value1 >= 10 && this.value1 <= 11) this.index = 2
+        if(this.value1 === 3) this.index = 3
+
+        if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
+            || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
+            if (!this.m_player.m_moving) {
+                this.m_player.play(this.charKey_anim[this.index]);
             }
-        }
-        else if(this.value1 === 2 || (this.value1 >= 7 && this.value1 <= 9)) {
-            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
-                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
-                if (!this.m_player.m_moving) {
-                    this.m_player.play("FemalePlayer_anim");
-                }
-                this.m_player.m_moving = true;
-            } 
-            else {
-                if (this.m_player.m_moving) {
-                    this.m_player.play("FemalePlayer_idle");
-                }
-                this.m_player.m_moving = false;
+            this.m_player.m_moving = true;
+        } 
+        else {
+            if (this.m_player.m_moving) {
+                this.m_player.play(this.charKey_idle[this.index]);
             }
+            this.m_player.m_moving = false;
         }
-        else if (this.value1 >= 10 && this.value1 <= 11) {
-            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
-                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
-                if (!this.m_player.m_moving) {
-                    this.m_player.play("Female_H1_anim");
-                    // this.m_player.setScale(0.8);
-                }
-                this.m_player.m_moving = true;
-            } 
-            else {
-                if (this.m_player.m_moving) {
-                    this.m_player.play("Female_H_anim");
-                }
-                this.m_player.m_moving = false;
-            }
-        }
-        else if(this.value1 === 3) {
-            if (this.keyW.isDown || this.keyA.isDown || this.keyS.isDown || this.keyD.isDown 
-                || this.m_cursorKeys.left.isDown || this.m_cursorKeys.right.isDown || this.m_cursorKeys.up.isDown || this.m_cursorKeys.down.isDown) {
-                if (!this.m_player.m_moving) {
-                    this.m_player.play("Hidden_player2_anim");
-                    // this.m_player.setScale(0.8);
-                }
-                this.m_player.m_moving = true;
-            } 
-            else {
-                if (this.m_player.m_moving) {
-                    this.m_player.play("Hidden_player_anim");
-                }
-                this.m_player.m_moving = false;
-            }
-        }
-    
 
         // vector를 사용해 움직임을 관리할 것입니다.
         // vector = [x좌표 방향, y좌표 방향]입니다.
