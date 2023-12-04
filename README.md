@@ -3,5 +3,4 @@
 23년 1학기 JS project
 =======
 
-# use npm start
->>>>>>> upstream/main
+배포 사이트 : https://hyeok1003.github.io/JSproject/
