@@ -230,7 +230,7 @@ export default class PlayingScene extends Phaser.Scene {
 
             case 10:
                 removeOldestMobEvent(this);         // 강시 삭제
-                addMobEvent(this, 800, "mob3","mob3_anim", 40, 0.6);
+                addMobEvent(this, 900, "mob3","mob3_anim", 50, 0.6);
                 addMob(this, "boss1", "boss1_anim", 1500, 0, 1);
                 if (this.value1 != 3){
                     setAttackDamage(this, "catnip", 10);
@@ -240,7 +240,7 @@ export default class PlayingScene extends Phaser.Scene {
                 break;
             case 11:
                 removeOldestMobEvent(this);
-                addMobEvent(this, 800, "mob4","mob4_anim", 40, 0.6);
+                addMobEvent(this, 800, "mob4","mob4_anim", 60, 0.6);
                 break;
             case 12:
                 if (this.value1 != 3){
@@ -262,7 +262,7 @@ export default class PlayingScene extends Phaser.Scene {
                 removeOldestMobEvent(this);
                 removeOldestMobEvent(this);         // 처녀귀신 삭제
                 
-                addMobEvent(this, 700, "mob7", "mob7_anim", 60, 0.6);
+                addMobEvent(this, 700, "mob7", "mob7_anim", 70, 0.6);
                 
                 setBackground(this, "background4");
                 this.m_stage1_2.stop();
@@ -282,10 +282,6 @@ export default class PlayingScene extends Phaser.Scene {
                     setAttackDamage(this, "beam", 30);
                     setAttackRepeatGap(this, "beam", 400);
                 }
-                break;
-
-            case 17:
-                removeOldestMobEvent(this);
                 break;
 
             case 18:
@@ -324,7 +320,7 @@ export default class PlayingScene extends Phaser.Scene {
                 setBackground(this, "background5");
                 this.m_stage2_2.stop();
                 this.m_LastStage.play({loop:true});
-                addMobEvent(this, 100, "mob1", "mob1_anim", 400, 0.6);
+                addMobEvent(this, 100, "mob1", "mob1_anim", 460, 0.6);
                 if (this.value1 != 3) setAttackDamage(this, "catnip", 30);
                 break;
 
@@ -333,7 +329,7 @@ export default class PlayingScene extends Phaser.Scene {
                 break;
 
             case 24:
-                addMobEvent(this, 100, "mob2", "mob2_anim", 400, 0.6);
+                addMobEvent(this, 100, "mob2", "mob2_anim", 500, 0.6);
                 if (this.value1 != 3) {
                     setAttackDamage(this, "catnip", 50);
                     setAttackDamage(this, "claw", 120);
@@ -348,8 +344,8 @@ export default class PlayingScene extends Phaser.Scene {
 
             case 26:
                 removeOldestMobEvent(this);
-                addMobEvent(this, 200, "mob9", "mob9_anim", 500, 0.6);
-                addMobEvent(this, 200, "mob10", "mob10_anim", 500, 0.6);
+                addMobEvent(this, 200, "mob9", "mob9_anim", 540, 0.6);
+                addMobEvent(this, 200, "mob10", "mob10_anim", 540, 0.6);
                 if (this.value1 != 3) setAttackDamage(this, "catnip", 60);
                 break;
 
@@ -371,8 +367,8 @@ export default class PlayingScene extends Phaser.Scene {
             case 30:
                 removeOldestMobEvent(this);
                 removeOldestMobEvent(this);
-                addMobEvent(this, 200, "mob9", "mob9_anim", 800, 0.6);
-                addMobEvent(this, 200, "mob10", "mob10_anim", 800, 0.6);
+                addMobEvent(this, 200, "mob9", "mob9_anim", 900, 0.6);
+                addMobEvent(this, 200, "mob10", "mob10_anim", 900, 0.6);
                 if (this.value1 != 3) setAttackDamage(this, "beam", 100);
                 else setAttackDamage(this, "beam", 200);
                 break;
@@ -386,8 +382,8 @@ export default class PlayingScene extends Phaser.Scene {
             case 32:
                 removeOldestMobEvent(this);
                 removeOldestMobEvent(this);
-                addMobEvent(this, 200, "mob9", "mob9_anim", 1400, 0.6);
-                addMobEvent(this, 200, "mob10", "mob10_anim", 1400, 0.6);
+                addMobEvent(this, 200, "mob9", "mob9_anim", 1500, 0.6);
+                addMobEvent(this, 200, "mob10", "mob10_anim", 1500, 0.6);
                 if (this.value1 != 3) setAttackDamage(this, "beam", 120);
                 break;
             

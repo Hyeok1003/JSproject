@@ -62,7 +62,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         }
         else if (texture === "boss2") {
             this.scale = 1.3;
-            this.m_speed = 60;
+            this.m_speed = 100;
             this.setBodySize(150, 120);
         }
         else if (texture === "mob9") {
