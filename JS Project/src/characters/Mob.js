@@ -143,7 +143,6 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
     // 공격받은 mob을 투명도를 1초간 조절함으로써 공격받은 것을 표시합니다.
     displayHit() {
         // 보스몹이면 투명도를 조절하지 않습니다.
-        if (this.texture.key === "boss1" || this.texture.key === "boss2") return;
         // 몹의 투명도를 0.5로 변경하고,
         // 0.3초 후 1로 변경합니다.
         this.alpha = 0.5;

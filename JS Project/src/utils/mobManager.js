@@ -37,7 +37,7 @@ export function removeOldestMobEvent(scene) {
  * Mob object 하나를 추가합니다.
  * 위치 (x, y)는 getRandomPosition 함수를 통해 정해집니다.
  */
-export function addMob(scene, mobTexture, mobAnim, mobHp) {
+export function addMob(scene, mobTexture, mobAnim, mobHp, dropRate=0) {
     let [x, y] = getRandomPosition(scene.m_player.x, scene.m_player.y);
-    scene.m_mobs.add(new Mob(scene, x, y, mobTexture, mobAnim, mobHp, 0));
+    scene.m_mobs.add(new Mob(scene, x, y, mobTexture, mobAnim, mobHp, dropRate));
 }

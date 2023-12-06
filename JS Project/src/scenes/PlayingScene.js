@@ -24,19 +24,19 @@ export default class PlayingScene extends Phaser.Scene {
         // load는 전역적으로 어떤 scene에서든 asset을 사용할 수 있도록 load 해주는 것이고,
         // add는 해당 scene에서 사용할 수 있도록 scene의 멤버 변수로 추가할 때 사용하는 것입니다.
         this.sound.pauseOnBlur = false;
-        this.m_beamSound = this.sound.add("audio_beam");
-        this.m_scratchSound = this.sound.add("audio_scratch");
-        this.m_hitMobSound = this.sound.add("audio_hitMob");
-        this.m_growlSound = this.sound.add("audio_growl");
-        this.m_explosionSound = this.sound.add("audio_explosion");
-        this.m_expUpSound = this.sound.add("audio_expUp");
-        this.m_expeatSound = this.sound.add("audio_expeat");
-        this.m_hurtSound = this.sound.add("audio_hurt");
-        this.m_nextLevelSound = this.sound.add("audio_nextLevel");
-        this.m_gameOverSound = this.sound.add("audio_gameOver");
-        this.m_gameClearSound = this.sound.add("audio_gameClear");
-        this.m_pauseInSound = this.sound.add("audio_pauseIn");
-        this.m_pauseOutSound = this.sound.add("audio_pauseOut");
+        this.m_beamSound = this.sound.add("audio_beam", {volume: 0.5});
+        this.m_scratchSound = this.sound.add("audio_scratch", {volume: 0.5});
+        this.m_hitMobSound = this.sound.add("audio_hitMob", {volume: 0.5});
+        this.m_growlSound = this.sound.add("audio_growl", {volume: 0.5});
+        this.m_explosionSound = this.sound.add("audio_explosion", {volume: 0.5});
+        this.m_expUpSound = this.sound.add("audio_expUp", {volume: 0.5});
+        this.m_expeatSound = this.sound.add("audio_expeat", {volume: 0.5});
+        this.m_hurtSound = this.sound.add("audio_hurt", {volume: 0.5});
+        this.m_nextLevelSound = this.sound.add("audio_nextLevel", {volume: 0.5});
+        this.m_gameOverSound = this.sound.add("audio_gameOver", {volume: 0.5});
+        this.m_gameClearSound = this.sound.add("audio_gameClear", {volume: 0.5});
+        this.m_pauseInSound = this.sound.add("audio_pauseIn", {volume: 0.5});
+        this.m_pauseOutSound = this.sound.add("audio_pauseOut", {volume: 0.5});
         this.GameOverBGM = this.sound.add("GameOverBGM");
 
         this.m_stage1 = this.sound.add("BGM_S1");
@@ -212,7 +212,7 @@ export default class PlayingScene extends Phaser.Scene {
             case 7:
                 // catnip 크기 확대
                 if (this.value1 === 3) setAttackDamage(this, "fire_floor", 100);
-                else setAttackDamage(this, "catnip", 5);
+                else setAttackDamage(this, "catnip", 8);
                 if (this.value1 === 3) setAttackScale(this, "fire_floor", 10);
                 else setAttackScale(this, "catnip", 3);
                 break;
@@ -230,31 +230,36 @@ export default class PlayingScene extends Phaser.Scene {
 
             case 10:
                 removeOldestMobEvent(this);         // 강시 삭제
-                addMob(this, "boss1", "boss1_anim", 1500, 0);
+                addMobEvent(this, 800, "mob3","mob3_anim", 40, 0.6);
+                addMob(this, "boss1", "boss1_anim", 1500, 0, 1);
                 if (this.value1 != 3){
-                    setAttackDamage(this, "catnip", 8);
+                    setAttackDamage(this, "catnip", 10);
                     setAttackRepeatGap(this, "beam", 600);
                 }
                 else addMobEvent(this, 600, "boss1", "boss1_anim", 4000, 0.8);
                 break;
-
+            case 11:
+                removeOldestMobEvent(this);
+                addMobEvent(this, 800, "mob4","mob4_anim", 40, 0.6);
+                break;
             case 12:
                 if (this.value1 != 3){
-                    setAttackDamage(this, "catnip", 10);
+                    setAttackDamage(this, "catnip", 13);
                     setAttackDamage(this, "beam", 20);
                 }
                 
                 break;
 
             case 13:
-                if (this.value1 != 3) setAttackDamage(this, "catnip", 12);
+                if (this.value1 != 3) setAttackDamage(this, "catnip", 15);
                 break;
 
             case 14:
-                if (this.value1 != 3) setAttackDamage(this, "catnip", 14);
+                if (this.value1 != 3) setAttackDamage(this, "catnip", 18);
                 break;
 
             case 15:
+                removeOldestMobEvent(this);
                 removeOldestMobEvent(this);         // 처녀귀신 삭제
                 
                 addMobEvent(this, 700, "mob7", "mob7_anim", 60, 0.6);

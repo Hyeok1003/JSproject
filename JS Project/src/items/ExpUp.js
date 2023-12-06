@@ -36,6 +36,9 @@ const ITEM_PROPERTY = {
     'boss1': {
         exp: 500,
     },
+    'boss2': {
+        exp: 500,
+    },
 };
 
 export default class ExpUp extends Phaser.Physics.Arcade.Sprite {
